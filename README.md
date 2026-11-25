@@ -12,6 +12,7 @@ The default branch contains the contract source snapshot associated with signed 
 - [Signed publication and deployment contract lock](deployments/dogeos-chikyu/sdk-0.4.65-publication.json)
 - [Audit report and findings](audits/README.md)
 - [Vanta partner SDK](https://github.com/stealthos-xyz/vanta-sdk)
+- [November 24 audit-closeout contract candidate (not deployed)](https://github.com/stealthos-xyz/contracts/tree/audit-candidate-2026-11-24)
 
 The original Solidity filenames, SPDX headers and source paths are preserved, including historical naming in required dependencies. Unrelated standalone experiments are not included. Audit remediation candidates are distinct from deployed contracts.
 
