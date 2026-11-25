@@ -4,6 +4,8 @@ pragma solidity ^0.8.20;
 import {VantaFamilyNoAppendExitCustodyPreAudit as ExitPool}
     from "./VantaFamilyNoAppendExitCustodyPreAudit.sol";
 import {VantaFamilyReleaseBinding} from "./VantaFamilyReleaseBinding.sol";
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {VantaFamilyProtocolFeePolicy} from "./VantaFamilyProtocolFeePolicy.sol";
 import {PoseidonT4} from "../libraries/PoseidonT4.sol";
 import {VantaTokenHash} from "./VantaTokenHash.sol";
@@ -440,6 +442,7 @@ contract VantaFamilyUnifiedPoolPreAudit is ExitPool, VantaFamilyReleaseBinding {
 ///      the custody pool remain exactly the same, and no updater/admin exists.
 library VantaV8UnifiedNormalSpendLogic {
     using VantaEpochStateV1 for VantaEpochStateV1.State;
+    using SafeERC20 for IERC20;
 
     uint256 private constant FR =
         21888242871839275222246405745257275088548364400416034343698204186575808495617;
@@ -463,6 +466,23 @@ library VantaV8UnifiedNormalSpendLogic {
     error InvalidNormalFeeProof();
     error InvalidSource();
     error TargetUnavailable();
+    error AssetTransferMismatch();
+
+    /// @dev Delegatecall retains the pool address, original payer and msg.value.
+    /// Receipt is exact and occurs before the guarded pool credits liability.
+    /// Reverts undo nonce, commitment and epoch updates in the same transaction.
+    function _receiveDirectDeposit(address asset, uint256 gross) private {
+        if (asset == address(0)) {
+            if (msg.value != gross) revert AssetTransferMismatch();
+            return;
+        }
+        if (msg.value != 0) revert AssetTransferMismatch();
+        IERC20 token = IERC20(asset);
+        uint256 beforeBalance = token.balanceOf(address(this));
+        token.safeTransferFrom(msg.sender, address(this), gross);
+        if (token.balanceOf(address(this)) - beforeBalance != gross)
+            revert AssetTransferMismatch();
+    }
 
     function directDeposit(
         VantaEpochStateV1.State storage state,
@@ -473,7 +493,7 @@ library VantaV8UnifiedNormalSpendLogic {
         Kzg.RowKey[5] calldata rowKeys, uint8[2] calldata feeSlots,
         bytes calldata combinedProof, bytes32 domain, Pins memory pins,
         address clearanceGate, bytes calldata clearance
-    ) external returns (uint256) {
+    ) external returns (uint256 nextCheckpoint) {
         if (q.nonce == bytes32(0) ||
             usedNonce[q.nonce] || block.timestamp > q.deadline) revert InvalidNormalSpend();
         VantaNativeWalletClearance(clearanceGate).requireClearance(msg.sender, clearance);
@@ -483,12 +503,14 @@ library VantaV8UnifiedNormalSpendLogic {
         if (q.count == 1) {
             if (!VantaNativeSwapWalletClearance(clearanceGate).isSwapIngress(msg.sender,address(this),keccak256(abi.encodeWithSelector(VantaFamilyUnifiedPoolPreAudit.depositWithPrivateFeeNotes.selector,q,outputs,encryptedOutputs,rowKeys,feeSlots,combinedProof,clearance))))
                 revert InvalidNormalSpend();
-            return _depositSwapOutput(state,usedNonce,commitmentSeen,q,outputs,encryptedOutputs,rowKeys,feeSlots,combinedProof,pins);
+            nextCheckpoint = _depositSwapOutput(state,usedNonce,commitmentSeen,q,outputs,encryptedOutputs,rowKeys,feeSlots,combinedProof,pins);
+        } else {
+            bytes32 depositType = keccak256("PrivateFeeDepositQuote(uint64 chainId,address pool,address asset,uint64 epoch,uint256 checkpoint,address payer,uint8 count,uint128 gross,uint128 protocolFeeCap,uint128 partnerFeeCap,address protocolRecipient,address partnerRecipient,bytes32 outputsHash,bytes32 envelopesHash,bytes32 feeSlotsHash,uint256 feeTermsHash,uint256 partnerRegistryRoot,bytes32 nonce,uint64 deadline,bytes32 feePolicyHash)");
+            bytes32 intentHash = keccak256(abi.encodePacked(hex"1901", domain, keccak256(abi.encode(depositType, q))));
+            nextCheckpoint = deposit(state, usedNonce, commitmentSeen, q, outputs,
+                encryptedOutputs, rowKeys, feeSlots, combinedProof, intentHash, pins);
         }
-        bytes32 depositType = keccak256("PrivateFeeDepositQuote(uint64 chainId,address pool,address asset,uint64 epoch,uint256 checkpoint,address payer,uint8 count,uint128 gross,uint128 protocolFeeCap,uint128 partnerFeeCap,address protocolRecipient,address partnerRecipient,bytes32 outputsHash,bytes32 envelopesHash,bytes32 feeSlotsHash,uint256 feeTermsHash,uint256 partnerRegistryRoot,bytes32 nonce,uint64 deadline,bytes32 feePolicyHash)");
-        bytes32 intentHash = keccak256(abi.encodePacked(hex"1901", domain, keccak256(abi.encode(depositType, q))));
-        return deposit(state, usedNonce, commitmentSeen, q, outputs,
-            encryptedOutputs, rowKeys, feeSlots, combinedProof, intentHash, pins);
+        _receiveDirectDeposit(pins.asset, q.gross);
     }
 
     /// Public DEX proceeds need no hidden amount-allocation proof. Poseidon

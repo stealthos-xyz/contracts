@@ -49,7 +49,7 @@ contract VantaFamilyDirectDepositPoolPreAudit is VantaFamilyEnhancedPoolPreAudit
             rowKeys, feeSlots, combinedProof, domainSeparator(), _normalPins(),
             address(nativeWalletClearance), clearance
         );
-        _receiveExact(q.gross);
+        // The pinned normal logic has already received exactly q.gross.
         accountedLiability += q.gross;
     }
 }

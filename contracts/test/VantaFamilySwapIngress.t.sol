@@ -37,6 +37,7 @@ contract VantaFamilySwapIngressTest is Test {
  SwapAdmissionFixture gate;SwapIngressHarness pool;FamilyKzg updater;
  function setUp()public{vm.chainId(6281971);vm.warp(1000);gate=new SwapAdmissionFixture();
   updater=new FamilyKzg(0xd0acb3cf558621a2ca09fb448c31b9048c3fff4887ba1ddd9c25f83dad213cb8,bytes32(uint256(1)),bytes32(uint256(2)),bytes32(uint256(3)),6281971);
+  vm.deal(address(this),100 ether);
   pool=new SwapIngressHarness(address(updater),address(gate),18748594744334721918775612369910432214884311383548206814505943691586936577870,20251746168959964454885615267872739662636101328900774802651254122346874777268);
  }
  function _keys()internal pure returns(Kzg.RowKey[5]memory keys){
@@ -70,11 +71,21 @@ contract VantaFamilySwapIngressTest is Test {
   q.outputsHash=keccak256(abi.encode(outputs));q.envelopesHash=keccak256(abi.encode(hashes));q.feeSlotsHash=keccak256(abi.encode(slots));
   return abi.encodeCall(SwapIngressHarness.depositWithPrivateFeeNotes,(q,outputs,env,_keys(),slots,abi.encode(npk),clearance));
  }
- function _run(bytes memory data)internal returns(bool,bytes memory){gate.allow(keccak256(data),true);return address(pool).call(data);}
+ function _run(bytes memory data)internal returns(bool,bytes memory){gate.allow(keccak256(data),true);return address(pool).call{value:20 ether}(data);}
  function testRealCeremonyKzgKeyAppendsExactPoseidonValue()public{bytes memory data=_data(20 ether,20 ether);gate.allow(keccak256(data),true);
-  uint256 beforeGas=gasleft();(bool ok,bytes memory result)=address(pool).call(data);emit log_named_uint("real single-row ingress gas",beforeGas-gasleft());
-  assertTrue(ok);assertEq(result.length,32);assertEq(pool.rows(),34);assertTrue(pool.used(bytes32(uint256(999))));
-  (ok,)=address(pool).call(data);assertFalse(ok);assertEq(pool.rows(),34);
+  uint256 beforeGas=gasleft();(bool ok,bytes memory result)=address(pool).call{value:20 ether}(data);emit log_named_uint("real single-row ingress gas",beforeGas-gasleft());
+  assertTrue(ok);assertEq(result.length,32);assertEq(pool.rows(),34);assertTrue(pool.used(bytes32(uint256(999))));assertEq(address(pool).balance,20 ether);
+  (ok,)=address(pool).call{value:20 ether}(data);assertFalse(ok);assertEq(pool.rows(),34);assertEq(address(pool).balance,20 ether);
+ }
+ function testIncorrectValueRollsBackVerifiedKzgAppendAndNonce()public{
+  bytes memory data=_data(20 ether,20 ether);gate.allow(keccak256(data),true);
+  uint256 beforeRef=pool.checkpoint();
+  (bool ok,bytes memory reason)=address(pool).call{value:19 ether}(data);
+  assertFalse(ok);assertEq(bytes4(reason),Logic.AssetTransferMismatch.selector);
+  assertEq(pool.checkpoint(),beforeRef);assertEq(pool.rows(),33);
+  assertFalse(pool.used(bytes32(uint256(999))));assertEq(address(pool).balance,0);
+  (ok,)=address(pool).call{value:20 ether}(data);
+  assertTrue(ok);assertEq(pool.rows(),34);assertEq(address(pool).balance,20 ether);
  }
  function testValueInflationCannotBypassFeesOrConservation()public{bytes memory data=_data(20 ether,21 ether);(bool ok,)=_run(data);assertFalse(ok);assertEq(pool.rows(),33);assertFalse(pool.used(bytes32(uint256(999))));}
  function testOrdinaryDepositCannotUseOneNoteExemption()public{bytes memory data=_data(20 ether,20 ether);gate.allow(keccak256(data),false);(bool ok,)=address(pool).call(data);assertFalse(ok);assertEq(pool.rows(),33);}
