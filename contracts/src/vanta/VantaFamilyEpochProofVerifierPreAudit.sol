@@ -142,6 +142,9 @@ contract VantaFamilyEpochProofVerifierPreAudit is VantaFamilyReleaseBinding {
             keccak256(g1.context) != keccak256(_expectedContext(sourceEpoch, sourceRow, sourceX, sourceY)) ||
             keccak256(abi.encode(link.a2, link.c1, link.c2)) != linkHash)
             return false;
+        // The standalone bundle accepts caller-supplied research parameters.
+        // Custody authority comes only from this wrapper after the immutable
+        // VK/SRS/link hashes and authenticated epoch checkpoint checks above.
         return bundle.verifyV8ResearchBundle(width, g0, g1, link);
     }
 

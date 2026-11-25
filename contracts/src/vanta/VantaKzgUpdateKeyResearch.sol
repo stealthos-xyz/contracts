@@ -71,6 +71,8 @@ contract VantaKzgUpdateKeyResearch {
 
         // Decode precisely the same 32 little-endian bytes as Arkworks Fq.
         // The two high flags are not part of the 254-bit x coordinate.
+        // Solidity bytes32 indexing starts at the first serialized byte.
+        // Arkworks Fq byte i has weight 2^(8*i); byte 31 holds the flag bits.
         uint256 encoded;
         for (uint256 i = 0; i < 32; ++i) {
             encoded |= uint256(uint8(data[i])) << (8 * i);

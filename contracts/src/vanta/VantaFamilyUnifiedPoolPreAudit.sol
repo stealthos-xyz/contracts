@@ -429,6 +429,10 @@ contract VantaFamilyUnifiedPoolPreAudit is ExitPool, VantaFamilyReleaseBinding {
 }
 
 /// @notice Immutable, externally linked normal-spend logic for the ONE V8 pool.
+/// @dev Quote expiration/replay authorization is enforced by the guarded pool
+/// selectors before entering this library (_authorize or directDeposit). The
+/// direct-deposit selector also supplies its own isolated nonce storage. A
+/// library helper is not an independently callable custody entrypoint.
 /// @dev Solidity performs a delegatecall to this statically linked library.
 ///      It receives only the pool's existing storage references and immutable
 ///      pins. It cannot select a separate custody address, fee route, epoch
