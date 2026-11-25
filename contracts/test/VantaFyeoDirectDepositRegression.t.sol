@@ -11,10 +11,25 @@ import {VantaFamilyEnhancedPoolPreAudit as Enhanced} from "../src/vanta/VantaFam
 import {VantaFamilyDirectDepositPoolPreAudit as Direct} from "../src/vanta/VantaFamilyDirectDepositPoolPreAudit.sol";
 import {VantaV8FiveRowKzgResearch as Kzg} from "../src/vanta/VantaV8FiveRowKzgResearch.sol";
 import {RoutedProofMock,RoutedCombinedMock,RoutedKzgMock} from "./VantaFamilyRoutedSettlement.t.sol";
-import {FamilyExitVerifierMock} from "./VantaFamilyPublicExitPreAudit.t.sol";
+import {VantaFamilyFullBundleVerifierPreAudit as Bundle} from "../src/vanta/VantaFamilyFullBundleVerifierPreAudit.sol";
+import {VantaFamilyAggregateGroth16PreAudit as Agg} from "../src/vanta/VantaFamilyAggregateGroth16PreAudit.sol";
+import {VantaV8StatementResearch as S8} from "../src/vanta/VantaV8StatementResearch.sol";
+import {VantaV8Statement32Research as S32} from "../src/vanta/VantaV8Statement32Research.sol";
 
 // Synthetic verification fixtures isolate the actual pool's custody and nonce
 // mechanics. They are NOT cryptographic or screening qualification artifacts.
+contract FyeoExitVerifierFixture is VantaFamilyReleaseBinding {
+    constructor()
+        VantaFamilyReleaseBinding(bytes32(uint256(1)),bytes32(uint256(2)),bytes32(uint256(3)),block.chainid) {}
+    function verifyExit8(S8.LegPublic calldata,uint64,uint128,uint128,
+        Bundle.V8Gate0Data calldata,Bundle.Gate1Data calldata,Bundle.LinkData calldata,
+        uint64,uint256,uint256) external pure returns (bool) { return true; }
+    function verifyExit32(S32.LegPublic calldata,uint64,uint128,uint128,
+        Bundle.V8Gate0Data calldata,Bundle.Gate1Data calldata,Bundle.LinkData calldata,
+        uint64,uint256,uint256) external pure returns (bool) { return true; }
+    function verifyPayout(Agg.VerifyingKey calldata,Agg.Proof calldata,uint256[11] calldata,
+        uint256,uint256,uint256) external pure returns (bool) { return true; }
+}
 contract FyeoEnhancedFeeFixture is VantaFamilyReleaseBinding {
     address public immutable asset;
     Policy public immutable protocolFeePolicy;
@@ -69,7 +84,7 @@ contract VantaFyeoDirectDepositRegressionTest is Test {
             [uint16(15),uint16(15),uint16(0),uint16(15),uint16(15),uint16(15)],
             b.setupId,b.generationId,b.familyTag,b.chainId);
         b.protocolFeePolicy=address(policy);
-        b.exitVerifier=address(new FamilyExitVerifierMock(b.setupId,b.generationId,b.familyTag,b.chainId));
+        b.exitVerifier=address(new FyeoExitVerifierFixture());
         b.normalVerifier=address(new RoutedProofMock());
         b.combinedFeeVerifier=address(new RoutedCombinedMock(policy));
         b.kzg=address(new RoutedKzgMock());
