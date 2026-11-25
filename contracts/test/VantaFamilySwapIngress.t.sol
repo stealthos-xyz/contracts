@@ -11,7 +11,8 @@ import {PoseidonT4} from "../src/libraries/PoseidonT4.sol";
 contract SwapAdmissionFixture {
  bytes32 public allowed;bool public active;
  function allow(bytes32 h,bool a)external{allowed=h;active=a;}
- function requireClearance(address,bytes calldata)external pure{}
+ error ScreeningUnavailable();
+ function requireClearance(address,bytes calldata encoded)external view{if(!active||encoded.length!=0)revert ScreeningUnavailable();}
  function isSwapIngress(address,address pool,bytes32 h)external view returns(bool){return active&&msg.sender==pool&&allowed==h;}
 }
 contract SwapIngressHarness {
@@ -59,14 +60,15 @@ contract VantaFamilySwapIngressTest is Test {
  keys[0].siblings[14]=0xc96742cab403775b2b45bff9f4d3136e9000c2d563c6048b730e8814760ab67f;
  keys[0].siblings[15]=0xa77539b3e5bdc29e34ecd3ddd43dd7aaacaffe8e637839ed57978a6fb13a6500;
  }
- function _data(uint128 value,uint256 committedValue)internal view returns(bytes memory data){
+ function _data(uint128 value,uint256 committedValue)internal view returns(bytes memory data){return _dataForCount(value,committedValue,1,hex"");}
+ function _dataForCount(uint128 value,uint256 committedValue,uint8 count,bytes memory clearance)internal view returns(bytes memory data){
   uint256 npk=123;uint256 cm=PoseidonT4.hash([npk,VantaTokenHash.compute(block.chainid,address(pool),address(0)),committedValue]);
   Pool.PrivateFeeDepositQuote memory q;q.chainId=6281971;q.pool=address(pool);q.epoch=0;q.checkpoint=pool.checkpoint();q.payer=address(this);
-  q.count=1;q.gross=value;q.nonce=bytes32(uint256(999));q.deadline=1500;q.feePolicyHash=bytes32(uint256(8));
+  q.count=count;q.gross=value;q.nonce=bytes32(uint256(999));q.deadline=1500;q.feePolicyHash=bytes32(uint256(8));
   uint256[5]memory outputs;outputs[0]=cm;bytes[5]memory env;env[0]=new bytes(829);env[0][0]=0x01;
   bytes32[5]memory hashes;hashes[0]=keccak256(env[0]);uint8[2]memory slots;
   q.outputsHash=keccak256(abi.encode(outputs));q.envelopesHash=keccak256(abi.encode(hashes));q.feeSlotsHash=keccak256(abi.encode(slots));
-  return abi.encodeCall(SwapIngressHarness.depositWithPrivateFeeNotes,(q,outputs,env,_keys(),slots,abi.encode(npk),bytes("screening-fixture")));
+  return abi.encodeCall(SwapIngressHarness.depositWithPrivateFeeNotes,(q,outputs,env,_keys(),slots,abi.encode(npk),clearance));
  }
  function _run(bytes memory data)internal returns(bool,bytes memory){gate.allow(keccak256(data),true);return address(pool).call(data);}
  function testRealCeremonyKzgKeyAppendsExactPoseidonValue()public{bytes memory data=_data(20 ether,20 ether);gate.allow(keccak256(data),true);
@@ -76,6 +78,8 @@ contract VantaFamilySwapIngressTest is Test {
  }
  function testValueInflationCannotBypassFeesOrConservation()public{bytes memory data=_data(20 ether,21 ether);(bool ok,)=_run(data);assertFalse(ok);assertEq(pool.rows(),33);assertFalse(pool.used(bytes32(uint256(999))));}
  function testOrdinaryDepositCannotUseOneNoteExemption()public{bytes memory data=_data(20 ether,20 ether);gate.allow(keccak256(data),false);(bool ok,)=address(pool).call(data);assertFalse(ok);assertEq(pool.rows(),33);}
+ function testExternalIngressStillRequiresScreening()public{bytes memory data=_dataForCount(20 ether,20 ether,3,hex"");gate.allow(keccak256(data),false);(bool ok,bytes memory reason)=address(pool).call(data);assertFalse(ok);assertEq(bytes4(reason),SwapAdmissionFixture.ScreeningUnavailable.selector);assertEq(pool.rows(),33);}
+ function testInternalIngressRejectsUnexpectedClearanceBytes()public{bytes memory data=_dataForCount(20 ether,20 ether,1,hex"01");(bool ok,)=_run(data);assertFalse(ok);assertEq(pool.rows(),33);}
  function testChangingCalldataBreaksGatewayProvenance()public{bytes memory data=_data(20 ether,20 ether);gate.allow(bytes32(uint256(1)),true);(bool ok,)=address(pool).call(data);assertFalse(ok);}
  function testUnauthenticatedKzgKeyCannotCreateNote()public{bytes memory data=_data(20 ether,20 ether);
   // First row-key a.x is a static word after q(20) + outputs(5) + env-offset.

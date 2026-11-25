@@ -50,7 +50,7 @@ contract VantaNativeWalletClearance is VantaFamilyReleaseBinding {
                 c.validUntil, c.walletRevision, c.policyRevision, policyHash))));
     }
 
-    function requireClearance(address payer, bytes calldata encoded) external view onlyReleaseChain {
+    function requireClearance(address payer, bytes calldata encoded) public view virtual onlyReleaseChain {
         // Strict encoding keeps unbounded or ambiguous admission data out.
         if (encoded.length != 320) revert InvalidClearance();
         (Clearance memory c, bytes memory signature) = abi.decode(encoded, (Clearance, bytes));

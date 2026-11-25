@@ -3,6 +3,7 @@ pragma solidity ^0.8.20;
 import {VantaNativeWalletClearance} from "./VantaNativeWalletClearance.sol";
 interface IFamilySwapIngressGateway {
     function isActiveIngress(address escrow,address pool,bytes32 calldataHash) external view returns(bool);
+    function isActiveIngressEscrow(address escrow,address pool) external view returns(bool);
 }
 /// Native screening plus a separate immutable internal-swap provenance gate.
 /// Screening signer rotation cannot grant this permission or change its target.
@@ -13,6 +14,16 @@ contract VantaNativeSwapWalletClearance is VantaNativeWalletClearance {
         VantaNativeWalletClearance(administrator_,signer_,policyHash_,setupId,generationId,familyTag,chainId) {
         if(gateway==address(0))revert InvalidClearance();
         privateSwapGateway=gateway;
+    }
+    /// @notice Capability marker for SDKs on this new, signed deployment only.
+    function internalSwapIngressUsesProvenanceOnly() external pure returns(bool) { return true; }
+    /// @dev Empty clearance is accepted only inside the immutable gateway's
+    /// active, owner-signed one-note claim. The pool then checks its exact
+    /// calldata hash independently. No external deposit gains this permission.
+    function requireClearance(address payer, bytes calldata encoded) public view override onlyReleaseChain {
+        if (encoded.length != 0) { super.requireClearance(payer, encoded); return; }
+        if (privateSwapGateway.code.length == 0 ||
+            !IFamilySwapIngressGateway(privateSwapGateway).isActiveIngressEscrow(payer, msg.sender)) revert InvalidClearance();
     }
     function isSwapIngress(address escrow,address pool,bytes32 dataHash) external view onlyReleaseChain returns(bool) {
         return msg.sender==pool && privateSwapGateway.code.length!=0 &&

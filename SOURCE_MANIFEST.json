@@ -1,28 +1,7 @@
 {
-  "scope": "Contract source snapshot associated with signed SDK 0.4.65. All 18 signed bootstrap source SHA-256 pins matched the source snapshot; all 76 exported source, test and build files matched their original Git blob IDs. No complete deployed-bytecode equivalence is asserted.",
-  "sourceRevision": "28de6f9ee9b6a01fe6a6bbce73a33bfabc660915",
+  "scope": "Audit-closeout contract candidate dated 24 November 2026. This is not the signed 0.4.65 deployment snapshot; see main for that snapshot.",
+  "sourceRevision": "12ce9c7dca828889b213896aedb28d6f1be20de7",
   "network": "eip155:6281971",
-  "sdkVersion": "0.4.65",
-  "signedBootstrapSourceSha256": {
-    "contracts/src/vanta/VantaEnhancedFundingLogicPreAudit.sol": "223b44d489bd155362b4d185648e656a2c0a32c40ee11b55efce1914c449a568",
-    "contracts/src/vanta/VantaFamilyAdditionalAssetFeeVaultPreAudit.sol": "c893b1a743a3f5ea5aadd79668a309bd0557203e2c4e6500d6850793531ce5ef",
-    "contracts/src/vanta/VantaFamilyBatchPayout.sol": "4bda536392c95ceac2f50907c88a16bdf8544bfa1e24bab21eb4e460d7dc7d11",
-    "contracts/src/vanta/VantaFamilyChikyuRouteGatewayPreAudit.sol": "e6bfec1226c1e67e93d72b5bb088a139c26dcd208d00348d5d4369f44ea2a0a8",
-    "contracts/src/vanta/VantaFamilyCombinedFeePartnerAdapterPreAudit.sol": "1d01b864f684f2b2c3f7d656affbccb6229489bb19ac532b5ca621e033edcd20",
-    "contracts/src/vanta/VantaFamilyDirectDepositPoolPreAudit.sol": "8e4af903a54df2732fd6b9f3ae11b02f118902b7dde810ce221700a297d2856a",
-    "contracts/src/vanta/VantaFamilyEnhancedFeeAdapterPreAudit.sol": "5a96aeeaf8639a9c06d8d9e083058218989e3e1df7c1ab4d9597795e7037a874",
-    "contracts/src/vanta/VantaFamilyEnhancedPoolPreAudit.sol": "faa113ec1d3174f1b6c742f473edfdbf315dca96db5a464497efdef9e9597174",
-    "contracts/src/vanta/VantaFamilyHandleBootstrapFactory.sol": "c4ebb4b277a566ac339900b54c5709de1371218c0261f4e2d3dfab7fdf58c208",
-    "contracts/src/vanta/VantaFamilyNoAppendExitCustodyPreAudit.sol": "ebf53ebdb170ffb9fbf988c36dcd145715712473c06a01d6aca6239600d81fff",
-    "contracts/src/vanta/VantaFamilyPartnerKzgRegistrarPreAudit.sol": "5a11e4dbc49a4b9af46829629cb51ae09388c29dce6a90269379a461855981f1",
-    "contracts/src/vanta/VantaFamilyPartnerKzgRegistryPreAudit.sol": "2cfdd31246bb8668f04f61d6fa809ec87d6efe7c4bde7f127c454e8d6097b8c6",
-    "contracts/src/vanta/VantaFamilyPrivateSwapOutput.sol": "a91db48a3752876f32867acf49d24f3b0105402b0ea65557d88395738dbdc6bb",
-    "contracts/src/vanta/VantaFamilyProtocolFeePolicy.sol": "de9d44d672e1dc1c270253f48a8b073e101fcb311bcc891db919ae8014fcdc07",
-    "contracts/src/vanta/VantaFamilyPublicFeeVaultPreAudit.sol": "5e0a57929c8c3bebbfd797d96a055dbeec29689f5f326c971208df4cda844602",
-    "contracts/src/vanta/VantaFamilyUnifiedPoolPreAudit.sol": "c68bc3a2e19c20747ffdc25ea8d5ed11c4dd3718aecc0b66de5ee3828167c4bd",
-    "contracts/src/vanta/VantaNativeSwapWalletClearance.sol": "75506b73ebbaba00a872054a994df93ceaa064a530bcd608dfa91e201d9b6787",
-    "contracts/src/vanta/VantaNativeWalletClearance.sol": "ce88e925e342de7a342efd22b383413b450e68e95e7fdd2d76d9a2d39974ce2c"
-  },
   "files": {
     "contracts/foundry.lock": {
       "gitBlobSha": "a70488ba0b605dd37c3b4cfe18e25fac9e23488b"
@@ -145,7 +124,7 @@
       "gitBlobSha": "91e87d1d21d9eba62ae429631ae0d07bdfca2caf"
     },
     "contracts/src/vanta/VantaFamilyPrivateSwapOutput.sol": {
-      "gitBlobSha": "0cd7bbd00486c0cda9d777514b8dbf2a4402f14f"
+      "gitBlobSha": "be70391fc1aa57792e65a264f5eaf5ffdd817d35"
     },
     "contracts/src/vanta/VantaFamilyProtocolFeePolicy.sol": {
       "gitBlobSha": "51d06c021b623e7c77ca200f8f203ef0acabb1c2"
@@ -166,10 +145,10 @@
       "gitBlobSha": "73828227813302fd78b4cdb1bd5a920cb406a798"
     },
     "contracts/src/vanta/VantaNativeSwapWalletClearance.sol": {
-      "gitBlobSha": "cb22fd66bfa8d69d5cca31649d81ebf466755111"
+      "gitBlobSha": "babe37f80b7021ab5ed826633cdf32bf29f39180"
     },
     "contracts/src/vanta/VantaNativeWalletClearance.sol": {
-      "gitBlobSha": "72a40eee9ccc841c9bae919721dbbc8eb4e5679a"
+      "gitBlobSha": "9d1905cd84e32e342251c6943ec393f01cfc9ccd"
     },
     "contracts/src/vanta/VantaPoseidonV832Fast.sol": {
       "gitBlobSha": "a40973240bd9a1ff96f2399fbf937c86c3d5a0c6"
@@ -241,7 +220,7 @@
       "gitBlobSha": "7fa5cf837a5cfa6b4f34d418ebcc2e0e773dc382"
     },
     "contracts/test/VantaFamilySwapIngress.t.sol": {
-      "gitBlobSha": "c0622e2425d0aeacdc9c52df97642985bdd9f299"
+      "gitBlobSha": "9a56ecd9522311cca64c17e10845f6ebe69cc258"
     },
     "contracts/test/VantaPermanentHandleRegistry.t.sol": {
       "gitBlobSha": "ff8286eed42aacfee1d26c27245bad2d8724598a"
@@ -253,5 +232,12 @@
       "gitBlobSha": "8a77c8bddffa3653e78e323ffc5b1a05c470ee94"
     }
   },
-  "excluded": "Unrelated historical standalone implementations, operational configuration, deployment credentials, private monorepo history, and external/private proof fixtures."
+  "excluded": "Unrelated historical standalone implementations, operational configuration, deployment credentials, private monorepo history, and external/private proof fixtures.",
+  "releaseReference": "main: signed SDK 0.4.65",
+  "changedSinceRelease": [
+    "contracts/src/vanta/VantaFamilyPrivateSwapOutput.sol",
+    "contracts/src/vanta/VantaNativeSwapWalletClearance.sol",
+    "contracts/src/vanta/VantaNativeWalletClearance.sol",
+    "contracts/test/VantaFamilySwapIngress.t.sol"
+  ]
 }

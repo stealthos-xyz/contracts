@@ -4,7 +4,7 @@ Public Solidity source for the Vanta privacy protocol on DogeOS Chikyu (chain ID
 
 ## Source revisions
 
-The default branch contains the contract source snapshot associated with signed partner SDK **0.4.65**. All 18 Solidity SHA-256 hashes listed in its signed publication were matched to this snapshot. Additional verifier and dependency sources are retained from the same revision. All exported Solidity, tests and original build configuration match their original Git blob IDs.
+**Audit candidate, 24 November 2026. Not deployed.** This branch contains the audited candidate source snapshot, including the later private swap output and wallet clearance remediation. All exported source, tests and build files match the audit-closeout revision. The signed 0.4.65 source snapshot is retained on [main](https://github.com/stealthos-xyz/contracts/tree/main); the signed publication below is a historical reference, not a statement that these candidate contracts are deployed.
 
 - [Contract sources](contracts/src/)
 - [Selected Solidity tests](contracts/test/)
@@ -29,7 +29,7 @@ forge test
 
 The exported subset has not been independently compiled or tested in this repository. Included tests may use local fixtures and do not establish live proof soundness or deployment readiness. Original deployment tooling and operational services are not included.
 
-Verify the exact source SHA-256 pins in the manifest and compare actual network bytecode with the signed deployment lock before relying on a deployed contract. Final ceremony, final keys and deployment validation are separate release requirements.
+Compare candidate sources to the candidate Git blob manifest. For deployed sources and their signed SHA-256 pins, use main. Final ceremony, final keys and deployment validation are separate release requirements.
 
 ## Security and licensing
 
