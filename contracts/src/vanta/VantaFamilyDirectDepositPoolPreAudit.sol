@@ -10,6 +10,10 @@ import {VantaNativeWalletClearance} from "./VantaNativeWalletClearance.sol";
 /// This revision needs a new deployment; it never changes an existing pool.
 contract VantaFamilyDirectDepositPoolPreAudit is VantaFamilyEnhancedPoolPreAudit {
     VantaNativeWalletClearance private immutable nativeWalletClearance;
+    // Untrusted deposit nonces never share the signer/exit replay namespace.
+    mapping(bytes32 => bool) public usedDepositNonce;
+    // Fixed swap credit IDs cannot be consumed by ordinary user-selected nonces.
+    mapping(bytes32 => bool) public usedSwapCreditNonce;
 
     constructor(BaseConfiguration memory b, EnhancedConfiguration memory e, address clearance)
         VantaFamilyEnhancedPoolPreAudit(b, e)
@@ -42,12 +46,15 @@ contract VantaFamilyDirectDepositPoolPreAudit is VantaFamilyEnhancedPoolPreAudit
             }
         }
         _requireNormalProofSetup();
+        mapping(bytes32 => bool) storage ingressNonces = usedDepositNonce;
+        // One-note ingress is independently authenticated by the pinned swap gateway.
+        if (q.count == 1) ingressNonces = usedSwapCreditNonce;
         nextCheckpoint = VantaV8UnifiedNormalSpendLogic.directDeposit(
-            epochState, usedNonce, commitmentSeen, q, outputs, encryptedOutputs,
+            epochState, ingressNonces, commitmentSeen, q, outputs, encryptedOutputs,
             rowKeys, feeSlots, combinedProof, domainSeparator(), _normalPins(),
             address(nativeWalletClearance), clearance
         );
-        _receiveExact(q.gross);
+        // The pinned normal logic has already received exactly q.gross.
         accountedLiability += q.gross;
     }
 }

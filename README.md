@@ -4,7 +4,7 @@ Public Solidity source for the Vanta privacy protocol on DogeOS Chikyu (chain ID
 
 ## Source revisions
 
-The default branch contains the contract source snapshot associated with signed partner SDK **0.4.65**. All 18 Solidity SHA-256 hashes listed in its signed publication were matched to this snapshot. Additional verifier and dependency sources are retained from the same revision. All exported Solidity, tests and original build configuration match their original Git blob IDs.
+**Current development source, November 24–25 FYEO remediation. Not deployed.** This branch contains both FYEO remediation sets and the prior fund-safety closeout candidate. Every exported Solidity, test and build file matches the pinned private protocol source revision in the manifest. The signed SDK 0.4.65 source snapshot is retained at [the immutable historical commit](https://github.com/stealthos-xyz/contracts/tree/891c21a30eb462fd5a1d47d97da041ae88532e77); the signed publication below is historical evidence, not a claim that these revised contracts are deployed.
 
 - [Contract sources](contracts/src/)
 - [Selected Solidity tests](contracts/test/)
@@ -12,7 +12,6 @@ The default branch contains the contract source snapshot associated with signed 
 - [Signed publication and deployment contract lock](deployments/dogeos-chikyu/sdk-0.4.65-publication.json)
 - [Audit report and findings](audits/README.md)
 - [Vanta partner SDK](https://github.com/stealthos-xyz/vanta-sdk)
-- [November 24 audit-closeout contract candidate (not deployed)](https://github.com/stealthos-xyz/contracts/tree/audit-candidate-2026-11-24)
 
 The original Solidity filenames, SPDX headers and source paths are preserved, including historical naming in required dependencies. Unrelated standalone experiments are not included. Audit remediation candidates are distinct from deployed contracts.
 
@@ -28,9 +27,9 @@ forge build
 forge test
 ```
 
-The exported subset has not been independently compiled or tested in this repository. Included tests may use local fixtures and do not establish live proof soundness or deployment readiness. Original deployment tooling and operational services are not included.
+The exported subset matches the corresponding private protocol source blobs; targeted private-repository custody, Solidity and Rust regression CI passed. The public subset has not been independently compiled or tested in this repository. Included tests may use local fixtures and do not establish live proof soundness or deployment readiness. Original deployment tooling and operational services are not included.
 
-Verify the exact source SHA-256 pins in the manifest and compare actual network bytecode with the signed deployment lock before relying on a deployed contract. Final ceremony, final keys and deployment validation are separate release requirements.
+Compare candidate sources to the candidate Git blob manifest. For deployed sources and their signed SHA-256 pins, use the immutable historical 0.4.65 snapshot linked above. Final ceremony, final keys and deployment validation are separate release requirements.
 
 ## Security and licensing
 

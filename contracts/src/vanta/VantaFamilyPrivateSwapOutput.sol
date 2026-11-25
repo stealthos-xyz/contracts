@@ -163,6 +163,10 @@ contract VantaFamilyPrivateSwapOutput is VantaFamilyReleaseBinding, ReentrancyGu
         public view returns(bytes32) {
         return keccak256(abi.encodePacked(hex"1901",CLAIM_DOMAIN,keccak256(abi.encode(CLAIM_TYPEHASH,creditId,nonce,deadline,relayer,reimbursement,depositHash))));
     }
+    /// @notice Initial admission gate; exact calldata is independently checked by the pool.
+    function isActiveIngressEscrow(address escrow,address pool) external view returns(bool) {
+        return escrow==activeEscrow && pool==activePool && activeEscrow!=address(0);
+    }
     function isActiveIngress(address escrow,address pool,bytes32 dataHash) external view returns(bool) {
         return escrow==activeEscrow && pool==activePool && dataHash==activeDataHash && activeEscrow!=address(0);
     }

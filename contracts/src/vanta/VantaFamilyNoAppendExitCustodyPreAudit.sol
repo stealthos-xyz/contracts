@@ -503,6 +503,11 @@ abstract contract VantaFamilyNoAppendExitCustodyPreAudit is VantaV8PinnedEpochRo
 }
 
 /// @notice Immutable linked validation for the existing no-append selectors.
+/// @dev Security invariant: settleEight/settleThirtyTwo below are linked library
+/// calls, not the pool's external user entrypoints. Both pool entrypoints call
+/// _settle(q) after verification; it writes the quote nonce, decreases liability
+/// and pays the recipient and fees in the same transaction. Any failure reverts
+/// the entire delegatecall, including the preceding global nullifier writes.
 /// @dev Runs by delegatecall under the pool's unchanged reentrancy guard;
 /// this library never transfers assets or chooses a different custody pool.
 library VantaFamilyNoAppendExitLogicPreAudit {
