@@ -1,0 +1,257 @@
+{
+  "scope": "Contract source snapshot associated with signed SDK 0.4.65. All 18 signed bootstrap source SHA-256 pins matched the source snapshot; all 76 exported source, test and build files matched their original Git blob IDs. No complete deployed-bytecode equivalence is asserted.",
+  "sourceRevision": "28de6f9ee9b6a01fe6a6bbce73a33bfabc660915",
+  "network": "eip155:6281971",
+  "sdkVersion": "0.4.65",
+  "signedBootstrapSourceSha256": {
+    "contracts/src/vanta/VantaEnhancedFundingLogicPreAudit.sol": "223b44d489bd155362b4d185648e656a2c0a32c40ee11b55efce1914c449a568",
+    "contracts/src/vanta/VantaFamilyAdditionalAssetFeeVaultPreAudit.sol": "c893b1a743a3f5ea5aadd79668a309bd0557203e2c4e6500d6850793531ce5ef",
+    "contracts/src/vanta/VantaFamilyBatchPayout.sol": "4bda536392c95ceac2f50907c88a16bdf8544bfa1e24bab21eb4e460d7dc7d11",
+    "contracts/src/vanta/VantaFamilyChikyuRouteGatewayPreAudit.sol": "e6bfec1226c1e67e93d72b5bb088a139c26dcd208d00348d5d4369f44ea2a0a8",
+    "contracts/src/vanta/VantaFamilyCombinedFeePartnerAdapterPreAudit.sol": "1d01b864f684f2b2c3f7d656affbccb6229489bb19ac532b5ca621e033edcd20",
+    "contracts/src/vanta/VantaFamilyDirectDepositPoolPreAudit.sol": "8e4af903a54df2732fd6b9f3ae11b02f118902b7dde810ce221700a297d2856a",
+    "contracts/src/vanta/VantaFamilyEnhancedFeeAdapterPreAudit.sol": "5a96aeeaf8639a9c06d8d9e083058218989e3e1df7c1ab4d9597795e7037a874",
+    "contracts/src/vanta/VantaFamilyEnhancedPoolPreAudit.sol": "faa113ec1d3174f1b6c742f473edfdbf315dca96db5a464497efdef9e9597174",
+    "contracts/src/vanta/VantaFamilyHandleBootstrapFactory.sol": "c4ebb4b277a566ac339900b54c5709de1371218c0261f4e2d3dfab7fdf58c208",
+    "contracts/src/vanta/VantaFamilyNoAppendExitCustodyPreAudit.sol": "ebf53ebdb170ffb9fbf988c36dcd145715712473c06a01d6aca6239600d81fff",
+    "contracts/src/vanta/VantaFamilyPartnerKzgRegistrarPreAudit.sol": "5a11e4dbc49a4b9af46829629cb51ae09388c29dce6a90269379a461855981f1",
+    "contracts/src/vanta/VantaFamilyPartnerKzgRegistryPreAudit.sol": "2cfdd31246bb8668f04f61d6fa809ec87d6efe7c4bde7f127c454e8d6097b8c6",
+    "contracts/src/vanta/VantaFamilyPrivateSwapOutput.sol": "a91db48a3752876f32867acf49d24f3b0105402b0ea65557d88395738dbdc6bb",
+    "contracts/src/vanta/VantaFamilyProtocolFeePolicy.sol": "de9d44d672e1dc1c270253f48a8b073e101fcb311bcc891db919ae8014fcdc07",
+    "contracts/src/vanta/VantaFamilyPublicFeeVaultPreAudit.sol": "5e0a57929c8c3bebbfd797d96a055dbeec29689f5f326c971208df4cda844602",
+    "contracts/src/vanta/VantaFamilyUnifiedPoolPreAudit.sol": "c68bc3a2e19c20747ffdc25ea8d5ed11c4dd3718aecc0b66de5ee3828167c4bd",
+    "contracts/src/vanta/VantaNativeSwapWalletClearance.sol": "75506b73ebbaba00a872054a994df93ceaa064a530bcd608dfa91e201d9b6787",
+    "contracts/src/vanta/VantaNativeWalletClearance.sol": "ce88e925e342de7a342efd22b383413b450e68e95e7fdd2d76d9a2d39974ce2c"
+  },
+  "files": {
+    "contracts/foundry.lock": {
+      "gitBlobSha": "a70488ba0b605dd37c3b4cfe18e25fac9e23488b"
+    },
+    "contracts/foundry.toml": {
+      "gitBlobSha": "8d2b5a2bb65262d68ec5d7c1f586fddfe6cbf860"
+    },
+    "contracts/src/AnonymousHandleRegistry.sol": {
+      "gitBlobSha": "4cdc4d7e952335c469e162f3a6b98fbb5103cea1"
+    },
+    "contracts/src/VantaPermanentHandleRegistry.sol": {
+      "gitBlobSha": "6f68e45d000476601be6e71f9d34cab5fc25d8a2"
+    },
+    "contracts/src/libraries/DevelopmentChains.sol": {
+      "gitBlobSha": "ab7af47fd6ddfbb8051392f9542937fc7ac98edc"
+    },
+    "contracts/src/libraries/PoseidonExternal.sol": {
+      "gitBlobSha": "d7e9920a21cd9604ef0fc5d5f23d006a89470fe5"
+    },
+    "contracts/src/libraries/PoseidonT4.sol": {
+      "gitBlobSha": "480c5c617774174ce3839ec300edcc9c07be1c1f"
+    },
+    "contracts/src/libraries/PoseidonT4External.sol": {
+      "gitBlobSha": "7d688239c55e6cb87374e52b459c3a0eb5ca0168"
+    },
+    "contracts/src/vanta/VantaBaseChainPolicy.sol": {
+      "gitBlobSha": "f82f5f19c6efaf2f2c789980ba7a31d82383cea6"
+    },
+    "contracts/src/vanta/VantaCaulkPlusGate1Research.sol": {
+      "gitBlobSha": "db550e581713cb63fc196442877b98028d2e4a80"
+    },
+    "contracts/src/vanta/VantaCheckpointRef.sol": {
+      "gitBlobSha": "5ae4423e6b360f4752691284bf0e3072a8a7f208"
+    },
+    "contracts/src/vanta/VantaCpLinkPairingResearch.sol": {
+      "gitBlobSha": "b7062c0d4914e9a81da59aee9cc36a3e2ad01ae3"
+    },
+    "contracts/src/vanta/VantaDummyPolicy.sol": {
+      "gitBlobSha": "0e82e573c4f5ad65e3290ed1f5f131f0bbb87812"
+    },
+    "contracts/src/vanta/VantaEnhancedClaimLogicPreAudit.sol": {
+      "gitBlobSha": "b632d34f610b08713a02bc4ce4beaca06686b64d"
+    },
+    "contracts/src/vanta/VantaEnhancedFundingLogicPreAudit.sol": {
+      "gitBlobSha": "2af024f8ef3f5871151ecd8ba03e092337b11836"
+    },
+    "contracts/src/vanta/VantaEpochCheckpointRef.sol": {
+      "gitBlobSha": "346032a92b1901b1c44a72b64565eaad593fd50c"
+    },
+    "contracts/src/vanta/VantaEpochStateV1.sol": {
+      "gitBlobSha": "83e4b5b9ab6fbf8072b88a096921377bd5c121cd"
+    },
+    "contracts/src/vanta/VantaFamilyAdditionalAssetFeeVaultPreAudit.sol": {
+      "gitBlobSha": "0a7d31f034f56eb39c24bd1fdec675a7f818643b"
+    },
+    "contracts/src/vanta/VantaFamilyAggregateGroth16PreAudit.sol": {
+      "gitBlobSha": "e2aa2d04c4e92c4bbc7ea49f36e90beed97d463a"
+    },
+    "contracts/src/vanta/VantaFamilyBatchPayout.sol": {
+      "gitBlobSha": "983b4f1700c86b62ed2eb15acf6ca0aa57251bb0"
+    },
+    "contracts/src/vanta/VantaFamilyBootstrapPreAudit.sol": {
+      "gitBlobSha": "427f20499442e9399f759cf95fbf660eaa982214"
+    },
+    "contracts/src/vanta/VantaFamilyChikyuRouteGatewayPreAudit.sol": {
+      "gitBlobSha": "10fdc13e19cebd7ac3aee8a5428726cfb28a88a0"
+    },
+    "contracts/src/vanta/VantaFamilyCombinedFeePartnerAdapterPreAudit.sol": {
+      "gitBlobSha": "e301ec18c1fe2645d04c0fe2d97252ee0c719477"
+    },
+    "contracts/src/vanta/VantaFamilyDirectDepositPoolPreAudit.sol": {
+      "gitBlobSha": "9e2e133ab53a8e6b37ad3ccaf168e9a231c2b4f2"
+    },
+    "contracts/src/vanta/VantaFamilyEnhancedFeeAdapterPreAudit.sol": {
+      "gitBlobSha": "f3ead9cb30568b31bde4cbbe82761cf27f6cd0fa"
+    },
+    "contracts/src/vanta/VantaFamilyEnhancedPoolPreAudit.sol": {
+      "gitBlobSha": "7420a5c531cd8a4af0f407045da5902e24f95b4d"
+    },
+    "contracts/src/vanta/VantaFamilyEpochDigestModulesPreAudit.sol": {
+      "gitBlobSha": "1fb2332a562b501b59ed905a8d55b67d94aad459"
+    },
+    "contracts/src/vanta/VantaFamilyEpochProofVerifierPreAudit.sol": {
+      "gitBlobSha": "0ea722e1a98cfb47334ba2c100588392af127d0c"
+    },
+    "contracts/src/vanta/VantaFamilyEpochStatementPreAudit.sol": {
+      "gitBlobSha": "6e28ded1ce1620e22f2e8a51b250811619fe4799"
+    },
+    "contracts/src/vanta/VantaFamilyExitDigestModulesPreAudit.sol": {
+      "gitBlobSha": "92aee92de43f1f0022b3adeca3d7557f7c2f1c48"
+    },
+    "contracts/src/vanta/VantaFamilyFiveRowKzgPreAudit.sol": {
+      "gitBlobSha": "39e44693d7fabc923018f283a556226523e3f484"
+    },
+    "contracts/src/vanta/VantaFamilyFullBundleVerifierPreAudit.sol": {
+      "gitBlobSha": "16638810cded97b20d7556b12535819c6d339099"
+    },
+    "contracts/src/vanta/VantaFamilyGate0CcGroth16PreAudit.sol": {
+      "gitBlobSha": "4f6c6ad21c1a162a3c36e910ce50677fdb665cb1"
+    },
+    "contracts/src/vanta/VantaFamilyHandleBootstrapFactory.sol": {
+      "gitBlobSha": "75e377c532ae6f1b8379b1962272b293f9e02978"
+    },
+    "contracts/src/vanta/VantaFamilyNoAppendExitCustodyPreAudit.sol": {
+      "gitBlobSha": "5ca6b135f36ad89b20ad15314744674254b92022"
+    },
+    "contracts/src/vanta/VantaFamilyNoAppendExitProofVerifierPreAudit.sol": {
+      "gitBlobSha": "a30a3da1456dc16a0329fbe5e8f4453e1de652e2"
+    },
+    "contracts/src/vanta/VantaFamilyPartnerKzgFeeVerifierPreAudit.sol": {
+      "gitBlobSha": "a475b1fdbcefa7ca93c6a85e1ea8cd5e9bfa8db1"
+    },
+    "contracts/src/vanta/VantaFamilyPartnerKzgRegistrarPreAudit.sol": {
+      "gitBlobSha": "c079bbab412cb5d0722e8952545b2926e8eef418"
+    },
+    "contracts/src/vanta/VantaFamilyPartnerKzgRegistryPreAudit.sol": {
+      "gitBlobSha": "6516ade06fc52c2eb8e162a8c7e9882aa2e90d48"
+    },
+    "contracts/src/vanta/VantaFamilyPartnerKzgUpdatePreAudit.sol": {
+      "gitBlobSha": "91e87d1d21d9eba62ae429631ae0d07bdfca2caf"
+    },
+    "contracts/src/vanta/VantaFamilyPrivateSwapOutput.sol": {
+      "gitBlobSha": "0cd7bbd00486c0cda9d777514b8dbf2a4402f14f"
+    },
+    "contracts/src/vanta/VantaFamilyProtocolFeePolicy.sol": {
+      "gitBlobSha": "51d06c021b623e7c77ca200f8f203ef0acabb1c2"
+    },
+    "contracts/src/vanta/VantaFamilyPublicFeeVaultPreAudit.sol": {
+      "gitBlobSha": "c8bc72c1fef331b6fd9916e9b1eb1929b2485857"
+    },
+    "contracts/src/vanta/VantaFamilyReleaseBinding.sol": {
+      "gitBlobSha": "43b04b9120db7de335e60d736f514482c087da0b"
+    },
+    "contracts/src/vanta/VantaFamilyScopedRowKeyPreAudit.sol": {
+      "gitBlobSha": "63ef7dd949af40f440ff30a92de9a1a0960ef7fc"
+    },
+    "contracts/src/vanta/VantaFamilyUnifiedPoolPreAudit.sol": {
+      "gitBlobSha": "7481516573abab7d6543b27152c18f3a2906fce4"
+    },
+    "contracts/src/vanta/VantaKzgUpdateKeyResearch.sol": {
+      "gitBlobSha": "73828227813302fd78b4cdb1bd5a920cb406a798"
+    },
+    "contracts/src/vanta/VantaNativeSwapWalletClearance.sol": {
+      "gitBlobSha": "cb22fd66bfa8d69d5cca31649d81ebf466755111"
+    },
+    "contracts/src/vanta/VantaNativeWalletClearance.sol": {
+      "gitBlobSha": "72a40eee9ccc841c9bae919721dbbc8eb4e5679a"
+    },
+    "contracts/src/vanta/VantaPoseidonV832Fast.sol": {
+      "gitBlobSha": "a40973240bd9a1ff96f2399fbf937c86c3d5a0c6"
+    },
+    "contracts/src/vanta/VantaPoseidonV832Sparse.sol": {
+      "gitBlobSha": "89c3fff89ad53eaa07457757d0ea604cd2cc76b0"
+    },
+    "contracts/src/vanta/VantaPoseidonV8Fast.sol": {
+      "gitBlobSha": "3a8b73db054bad73064c288044ea72568bf0c760"
+    },
+    "contracts/src/vanta/VantaPoseidonV8Sparse.sol": {
+      "gitBlobSha": "8bd62ef42972955b8aee01042a08af20b3e13f17"
+    },
+    "contracts/src/vanta/VantaTokenHash.sol": {
+      "gitBlobSha": "530875c8002dd83aa4361e3def35c0b0796607d9"
+    },
+    "contracts/src/vanta/VantaV8EpochDigestHashersResearch.sol": {
+      "gitBlobSha": "2016b8dd4430a59d2a753958fb766f6a4760bef7"
+    },
+    "contracts/src/vanta/VantaV8FiveRowKzgResearch.sol": {
+      "gitBlobSha": "2bb7ba4de93dee743639dd80dcf57ffa5dc64ee8"
+    },
+    "contracts/src/vanta/VantaV8PinnedEpochRolloverBase.sol": {
+      "gitBlobSha": "e9ec20e3f1f06f40854c63829d81218fe12fb122"
+    },
+    "contracts/src/vanta/VantaV8ScopedRowKeyResearch.sol": {
+      "gitBlobSha": "b1ee46891db669dff9a023c63eb09837244f3bf0"
+    },
+    "contracts/src/vanta/VantaV8Statement32Research.sol": {
+      "gitBlobSha": "aec4d5e7194b27b8967498132f0b77253f43a4ee"
+    },
+    "contracts/src/vanta/VantaV8StatementResearch.sol": {
+      "gitBlobSha": "8a5f7389d1cc1ef7ec3e14e92265643f2e34d1f3"
+    },
+    "contracts/src/verifiers/AnonymousHandleVerifier.sol": {
+      "gitBlobSha": "ee570cfa19986a150820b02f1b2d0a6c62042e67"
+    },
+    "contracts/src/verifiers/HandleRegisterProofAdapter.sol": {
+      "gitBlobSha": "dd19f14af451f8ae3d73ba6a8131de5c4bb3ed97"
+    },
+    "contracts/src/verifiers/HandleRegisterVerifier.sol": {
+      "gitBlobSha": "36d4f9d2a01c80ec509cb34b64c99f0cf67b1f7a"
+    },
+    "contracts/src/verifiers/HandleRotateProofAdapter.sol": {
+      "gitBlobSha": "5747c06de8a724dc9ee7cd8bc7bce149574f93a7"
+    },
+    "contracts/src/verifiers/HandleRotateVerifier.sol": {
+      "gitBlobSha": "dec8d13699043e21e1e0acb42ae53d5af8bd751b"
+    },
+    "contracts/test/AnonymousHandleRegistry.t.sol": {
+      "gitBlobSha": "217947bf5f773bebeadb1d7fb945f4372be83b26"
+    },
+    "contracts/test/VantaFamilyAdditionalAssetFeeVault.t.sol": {
+      "gitBlobSha": "f3e49380fb6d53a92b7a423b8a47c90c60b544bd"
+    },
+    "contracts/test/VantaFamilyAssetRegistry.t.sol": {
+      "gitBlobSha": "eeb01ffeb27fead2d4f415abd770db41babd84d0"
+    },
+    "contracts/test/VantaFamilyBatchPayout.t.sol": {
+      "gitBlobSha": "9c19d2d7991ad22a7c7cadd9da72196796c2e755"
+    },
+    "contracts/test/VantaFamilyChikyuRouteGateway.t.sol": {
+      "gitBlobSha": "08efba326e43afb54a1ea98c5d9c5c0beb59a9fb"
+    },
+    "contracts/test/VantaFamilyPrivateSwapOutput.t.sol": {
+      "gitBlobSha": "ebe732cc6eeecdfbc17fde569bef6104926b609c"
+    },
+    "contracts/test/VantaFamilyRoutedSettlement.t.sol": {
+      "gitBlobSha": "7fa5cf837a5cfa6b4f34d418ebcc2e0e773dc382"
+    },
+    "contracts/test/VantaFamilySwapIngress.t.sol": {
+      "gitBlobSha": "c0622e2425d0aeacdc9c52df97642985bdd9f299"
+    },
+    "contracts/test/VantaPermanentHandleRegistry.t.sol": {
+      "gitBlobSha": "ff8286eed42aacfee1d26c27245bad2d8724598a"
+    },
+    "contracts/test/echidna/AnonymousHandleRegistryEchidna.sol": {
+      "gitBlobSha": "742fc1a7d8c0e9d2c4d39b808afa008730cc929f"
+    },
+    "contracts/test/generated/PoseidonT3Real.sol": {
+      "gitBlobSha": "8a77c8bddffa3653e78e323ffc5b1a05c470ee94"
+    }
+  },
+  "excluded": "Unrelated historical standalone implementations, operational configuration, deployment credentials, private monorepo history, and external/private proof fixtures."
+}
