@@ -10,6 +10,8 @@ import {VantaNativeWalletClearance} from "./VantaNativeWalletClearance.sol";
 /// This revision needs a new deployment; it never changes an existing pool.
 contract VantaFamilyDirectDepositPoolPreAudit is VantaFamilyEnhancedPoolPreAudit {
     VantaNativeWalletClearance private immutable nativeWalletClearance;
+    // Untrusted deposit nonces never share the signer/exit replay namespace.
+    mapping(bytes32 => bool) public usedDepositNonce;
 
     constructor(BaseConfiguration memory b, EnhancedConfiguration memory e, address clearance)
         VantaFamilyEnhancedPoolPreAudit(b, e)
@@ -43,7 +45,7 @@ contract VantaFamilyDirectDepositPoolPreAudit is VantaFamilyEnhancedPoolPreAudit
         }
         _requireNormalProofSetup();
         nextCheckpoint = VantaV8UnifiedNormalSpendLogic.directDeposit(
-            epochState, usedNonce, commitmentSeen, q, outputs, encryptedOutputs,
+            epochState, usedDepositNonce, commitmentSeen, q, outputs, encryptedOutputs,
             rowKeys, feeSlots, combinedProof, domainSeparator(), _normalPins(),
             address(nativeWalletClearance), clearance
         );
