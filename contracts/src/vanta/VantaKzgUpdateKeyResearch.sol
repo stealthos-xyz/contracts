@@ -73,7 +73,7 @@ contract VantaKzgUpdateKeyResearch {
         // The two high flags are not part of the 254-bit x coordinate.
         uint256 encoded;
         for (uint256 i = 0; i < 32; ++i) {
-            encoded = (encoded << 8) | uint8(data[31 - i]);
+            encoded |= uint256(uint8(data[i])) << (8 * i);
         }
         return (encoded & (type(uint256).max >> 2)) == x;
     }

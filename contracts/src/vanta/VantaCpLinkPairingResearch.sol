@@ -36,6 +36,8 @@ contract VantaCpLinkPairingResearch {
             d.x, FQ - d.y, c1.xIm, c1.xRe, c1.yIm, c1.yRe,
             e.x, FQ - e.y, c2.xIm, c2.xRe, c2.yIm, c2.yRe
         );
+        // EIP-197 validates G2 twist-curve membership and prime-order subgroup
+        // membership for every input. Invalid encodings make the call fail.
         (bool success, bytes memory response) = address(0x08).staticcall(pairs);
         return success && response.length == 32 && abi.decode(response, (uint256)) == 1;
     }
