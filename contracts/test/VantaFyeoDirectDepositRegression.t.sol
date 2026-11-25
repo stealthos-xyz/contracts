@@ -3,6 +3,8 @@ pragma solidity ^0.8.20;
 
 import {Test} from "forge-std/Test.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import {PoseidonT4} from "../src/libraries/PoseidonT4.sol";
+import {VantaTokenHash} from "../src/vanta/VantaTokenHash.sol";
 import {VantaFamilyReleaseBinding} from "../src/vanta/VantaFamilyReleaseBinding.sol";
 import {VantaFamilyProtocolFeePolicy as Policy} from "../src/vanta/VantaFamilyProtocolFeePolicy.sol";
 import {VantaFamilyNoAppendExitCustodyPreAudit as ExitPool} from "../src/vanta/VantaFamilyNoAppendExitCustodyPreAudit.sol";
@@ -42,6 +44,16 @@ contract FyeoEnhancedFeeFixture is VantaFamilyReleaseBinding {
 }
 contract FyeoClearanceFixture is VantaFamilyReleaseBinding {
     address public immutable administrator;
+    address private swapPayer;
+    address private swapPool;
+    bytes32 private swapHash;
+    function allowSwap(address payer,address pool,bytes32 dataHash) external {
+        require(msg.sender == administrator);
+        swapPayer = payer; swapPool = pool; swapHash = dataHash;
+    }
+    function isSwapIngress(address payer,address pool,bytes32 dataHash) external view returns (bool) {
+        return msg.sender == pool && pool == swapPool && payer == swapPayer && dataHash == swapHash;
+    }
     constructor(address admin)
         VantaFamilyReleaseBinding(bytes32(uint256(1)),bytes32(uint256(2)),bytes32(uint256(3)),block.chainid)
     { administrator = admin; }
@@ -70,6 +82,7 @@ contract VantaFyeoDirectDepositRegressionTest is Test {
     address private constant PROTOCOL = address(0xA11);
     address private constant RECIPIENT = address(0xB22);
     bytes32 private constant NONCE = bytes32(uint256(999));
+    FyeoClearanceFixture private clearanceFixture;
     function setUp() public { vm.chainId(6281971); vm.warp(1000); vm.deal(address(this),10 ether); }
 
     function _pool(address asset) private returns (Direct pool) {
@@ -95,7 +108,8 @@ contract VantaFyeoDirectDepositRegressionTest is Test {
         e.claimVerifier=address(new RoutedProofMock());
         e.feeVerifier=address(new FyeoEnhancedFeeFixture(asset,policy));
         e.poseidon=address(new FyeoTreeHasherFixture());
-        pool=new Direct(b,e,address(new FyeoClearanceFixture(address(this))));
+        clearanceFixture = new FyeoClearanceFixture(address(this));
+        pool=new Direct(b,e,address(clearanceFixture));
     }
 
     function _packet(Direct pool,bytes32 nonce,uint256 first) private view returns (bytes memory) {
@@ -114,6 +128,55 @@ contract VantaFyeoDirectDepositRegressionTest is Test {
         q.outputsHash=keccak256(abi.encode(outputs)); q.envelopesHash=keccak256(abi.encode(hashes));
         q.feeSlotsHash=keccak256(abi.encode(slots));
         return abi.encodeCall(Pool.depositWithPrivateFeeNotes,(q,outputs,envelopes,rows,slots,hex"",hex""));
+    }
+
+    function _swapPacket(Direct pool,bytes32 creditId,uint256 npk) private view returns (bytes memory packet,uint256 commitment) {
+        Pool.PrivateFeeDepositQuote memory q;
+        (q.epoch,,,,q.checkpoint)=pool.currentSource();
+        q.chainId=uint64(block.chainid); q.pool=address(pool); q.asset=address(pool.asset());
+        q.payer=address(this); q.count=1; q.gross=1000; q.nonce=creditId;
+        q.deadline=uint64(block.timestamp+600); q.feePolicyHash=pool.feePolicyHash();
+        commitment=PoseidonT4.hash([npk,VantaTokenHash.compute(block.chainid,address(pool),q.asset),uint256(q.gross)]);
+        uint256[5] memory outputs; outputs[0]=commitment;
+        bytes[5] memory envelopes; envelopes[0]=new bytes(829); envelopes[0][0]=0x01;
+        bytes32[5] memory hashes; hashes[0]=keccak256(envelopes[0]);
+        uint8[2] memory slots; Kzg.RowKey[5] memory rows;
+        q.outputsHash=keccak256(abi.encode(outputs)); q.envelopesHash=keccak256(abi.encode(hashes));
+        q.feeSlotsHash=keccak256(abi.encode(slots));
+        packet=abi.encodeCall(Pool.depositWithPrivateFeeNotes,(q,outputs,envelopes,rows,slots,abi.encode(npk),hex""));
+    }
+
+    function testOrdinaryDepositCannotConsumeSwapCreditNonce() public {
+        Direct pool=_pool(address(0));
+        (bool ok,)=address(pool).call{value:1000}(_packet(pool,NONCE,101)); assertTrue(ok);
+        assertTrue(pool.usedDepositNonce(NONCE)); assertFalse(pool.usedSwapCreditNonce(NONCE));
+        (bytes memory packet,uint256 commitment)=_swapPacket(pool,NONCE,123);
+        // The ordinary lane cannot select the one-note registry without admission.
+        (ok,)=address(pool).call{value:1000}(packet); assertFalse(ok);
+        assertFalse(pool.usedSwapCreditNonce(NONCE)); assertFalse(pool.commitmentSeen(commitment));
+        clearanceFixture.allowSwap(address(this),address(pool),keccak256(packet));
+        (ok,)=address(pool).call{value:999}(packet); assertFalse(ok);
+        assertFalse(pool.usedSwapCreditNonce(NONCE)); assertFalse(pool.commitmentSeen(commitment));
+        assertEq(pool.accountedLiability(),1000); assertEq(pool.nextRow(),35);
+        (ok,)=address(pool).call{value:1000}(packet); assertTrue(ok);
+        assertTrue(pool.usedSwapCreditNonce(NONCE)); assertTrue(pool.commitmentSeen(commitment));
+        assertFalse(pool.usedNonce(NONCE)); assertEq(pool.accountedLiability(),2000); assertEq(pool.nextRow(),36);
+        // Fresh checkpoint and distinct commitment cannot replay a consumed credit.
+        (packet,commitment)=_swapPacket(pool,NONCE,124);
+        clearanceFixture.allowSwap(address(this),address(pool),keccak256(packet));
+        (ok,)=address(pool).call{value:1000}(packet); assertFalse(ok);
+        assertFalse(pool.commitmentSeen(commitment)); assertEq(pool.accountedLiability(),2000);
+    }
+
+    function testSwapCreditCannotConsumeOrdinaryDepositNonce() public {
+        Direct pool=_pool(address(0));
+        (bytes memory packet,)=_swapPacket(pool,NONCE,123);
+        clearanceFixture.allowSwap(address(this),address(pool),keccak256(packet));
+        (bool ok,)=address(pool).call{value:1000}(packet); assertTrue(ok);
+        assertTrue(pool.usedSwapCreditNonce(NONCE)); assertFalse(pool.usedDepositNonce(NONCE));
+        (ok,)=address(pool).call{value:1000}(_packet(pool,NONCE,201)); assertTrue(ok);
+        assertTrue(pool.usedDepositNonce(NONCE)); assertFalse(pool.usedNonce(NONCE));
+        assertEq(pool.accountedLiability(),2000); assertEq(pool.nextRow(),36);
     }
 
     function _exit(Direct pool,bytes32 nonce) private {
