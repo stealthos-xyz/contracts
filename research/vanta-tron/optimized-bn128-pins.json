@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "repository": "yanghang8612/java-tron",
+  "commit": "1b7ab7983fc5d79e884237a6a4d4a212c7b0ccec",
+  "baseRuntime": {
+    "repository": "tronprotocol/java-tron",
+    "tag": "GreatVoyage-v4.8.2.4",
+    "jarSha256": "709423e8d14ccba391daeef7aa78bb5f41a1b69559cc867346beacbd6aae39c9"
+  },
+  "scope": "Compile unchanged optimized arithmetic and its adapter for direct algorithm comparison only. No replacement of released TVM classes. Candidate timeout return semantics differ.",
+  "files": [
+    {
+      "path": "actuator/src/main/java/org/tron/core/vm/OptimizedBN128.java",
+      "gitBlobSha1": "262bd5c58a1dd694501cdb26d924356f09b2c6e4",
+      "sha256": "452f1475fe7a2df5a39ce87c8cd1cb9f169470ffe96893760642f82295c58d32"
+    },
+    {
+      "path": "actuator/src/test/resources/bn128/bn256Add.json",
+      "gitBlobSha1": "5f0b5c12f1b26a910da8a82a7dabe57b2e3c4305",
+      "sha256": "7c71427bc1c700dcab69273619daa6b24e61fa1f50a5621c30fe96974541ac85"
+    },
+    {
+      "path": "actuator/src/test/resources/bn128/bn256Pairing.json",
+      "gitBlobSha1": "2b134f55f7863e3a3435c65a94c6b11607730759",
+      "sha256": "d2f10b592532be9096e054520eb199842d55c16db82389bd9e1fa6faac387e87"
+    },
+    {
+      "path": "actuator/src/test/resources/bn128/bn256ScalarMul.json",
+      "gitBlobSha1": "d575174ba1892577269b943db9d8d4d11791baa6",
+      "sha256": "1e242629c3a500e3697b1d5fcdf87aad2445ea3e4dfa42f025705643da8d3105"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/BN128.java",
+      "gitBlobSha1": "5fe5216fc74ce2349f3d1626f32a54bec8e277ac",
+      "sha256": "17bf15bb5974fc9750fd886265d0769dd42af946a0688819d62bddd53b05d38e"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/BN128Fp.java",
+      "gitBlobSha1": "2d29eda5af1aa79833993bf2506a7ee7b31a906a",
+      "sha256": "dcf12c99cc1bc6e612a3ccd8ee111b3622cd3989e1aa3f109ef850892ed5618b"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/BN128Fp2.java",
+      "gitBlobSha1": "e9654196ac24b1e6655096190608005a02b40c88",
+      "sha256": "8a82d09b471d4d8cd383ae19d52cadd8026f2d785c1a8bdaf934669c92af3415"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/BN128G1.java",
+      "gitBlobSha1": "bd1cd9b07e2460a3f98536e972a490ef5640298d",
+      "sha256": "2eb396affbdb67d4f3d520d138fef28ab3f45a717cac50a607e32ac2914b2e27"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/BN128G2.java",
+      "gitBlobSha1": "45069f00725ede9a7f9b979faf145c3ed160ac84",
+      "sha256": "24ed5f90153d8f2a95bc3c14f41fa2548439b9756e52eaddc06df6a915b1a0a1"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/ExecutionDeadline.java",
+      "gitBlobSha1": "2ddc6cb4f06e366f1fd5a5f4ac4e56f1a651acfa",
+      "sha256": "07efb2dfacad52be1c258d97b3137eaf6116dd61be1c812626ec91b5a03408a5"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/Field.java",
+      "gitBlobSha1": "b2ecf66fd3feaae9431172ef0adb5235307d96a1",
+      "sha256": "48b9d2991101716adea6f962e4e361268274e9d71e83acee9a98a89b7ca84217"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/FixedExponent.java",
+      "gitBlobSha1": "bfcf7c2286543ad00b5c4763e33c01b4d28beadf",
+      "sha256": "a35461a8f6e3f73969b3e2735f8e966ea1739a9b44ea723e13e4f0456232850f"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/Fp.java",
+      "gitBlobSha1": "b0994dae4241678aa3b95a2cf767a2ba82e3295b",
+      "sha256": "acedf5d834dab7aa68424e82332d7cc5e1c65cbcbb0cbd2d3994f8facdea14ee"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/Fp12.java",
+      "gitBlobSha1": "a07f85a0147fa056a944ad6c0c8c92aa0886498e",
+      "sha256": "f16b416c0e90a55e8ae42745a26f3999335de178f5a9f3294d9462bc10b0db0c"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/Fp2.java",
+      "gitBlobSha1": "a6227686112fdb669cd33691c190fa38520d13a8",
+      "sha256": "79cae395a118070512386eb2edc10d3033f03656539983ad3088d3589c33bb05"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/Fp6.java",
+      "gitBlobSha1": "0ec9c3116bbf013640619c70f6dbd7f8d2b7b7c3",
+      "sha256": "a4e9e8b696f29856ee5de7fbcac05632768fd2db4dad6b419c9ccf77514a0374"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/FpMontgomery.java",
+      "gitBlobSha1": "94b658341675021ea2332ddec86772c0528616dc",
+      "sha256": "0aa2c0ea1128d105e40f8762ab7d771b599ca91131159d6d8f82eb74687ba093"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/G2SubgroupCheck.java",
+      "gitBlobSha1": "c726e0adc35c5011671e0887d9442c59fea0986f",
+      "sha256": "73ddfc7c21aa654be92f832133ba45023835daa1469a3d48abe7ad2fdd6ef583"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/PairingCheck.java",
+      "gitBlobSha1": "a6f083a7c5760495b01754f176a415e6f2703589",
+      "sha256": "6b2df6d21e2467fc01b53431dc4d7d3fc4d97ed6c26b444ec75d03522d5116b3"
+    },
+    {
+      "path": "crypto/src/main/java/org/tron/common/crypto/zksnark/optimized/Params.java",
+      "gitBlobSha1": "b282f9113d0abd1f38762f7bf31abffc09164660",
+      "sha256": "2b2b45d4a736f1aafdb4cb8b881f2bbb350c5ceb01dd344c868da12248d05dbe"
+    }
+  ]
+}

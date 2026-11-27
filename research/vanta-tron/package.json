@@ -1,0 +1,15 @@
+{
+  "name": "@stealthos/vanta-tron-research",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Isolated TRON verifier research, never a production package",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build:fixtures": "node build-vm-fixtures.mjs"
+  },
+  "dependencies": {
+    "@noble/curves": "1.9.7",
+    "ethers": "6.17.0"
+  }
+}

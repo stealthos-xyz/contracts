@@ -1,0 +1,103 @@
+name: Vanta TRON staged TVM research
+on:
+  push:
+    branches: [vanta-tron]
+    paths:
+      - 'research/vanta-tron/**'
+      - '!research/vanta-tron/**/*.md'
+      - '.github/workflows/vanta-tron-staged.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vanta-tron-staged-research
+  cancel-in-progress: true
+
+jobs:
+  research:
+    if: github.ref == 'refs/heads/vanta-tron'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        probe: [tvm, optimized-arithmetic]
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - name: Fetch and verify released runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          : "${JAVA_HOME_8_X64:?Runner must have JDK 8}"
+          "$JAVA_HOME_8_X64/bin/java" -version
+          node --version
+          mkdir -p "$RUNNER_TEMP/vanta-tron-results"
+          python3 - <<'PY'
+          import json, os, platform
+          from pathlib import Path
+          model = next((s.split(':',1)[1].strip() for s in Path('/proc/cpuinfo').read_text().splitlines() if s.startswith('model name')), 'unknown')
+          value = {'platform': platform.platform(), 'cpu': model, 'logicalCpus': os.cpu_count(), 'sourceCommit': os.environ['GITHUB_SHA']}
+          Path(os.environ['RUNNER_TEMP'], 'vanta-tron-results', 'runner.json').write_text(json.dumps(value, indent=2))
+          print(json.dumps(value))
+          PY
+          curl --fail --silent --show-error --location --retry 2 --max-time 180 \
+            https://github.com/tronprotocol/java-tron/releases/download/GreatVoyage-v4.8.2.4/FullNode-x64.jar \
+            -o "$RUNNER_TEMP/FullNode.jar"
+          echo "709423e8d14ccba391daeef7aa78bb5f41a1b69559cc867346beacbd6aae39c9  $RUNNER_TEMP/FullNode.jar" | sha256sum -c -
+      - name: Compile real bytecode and construct scoped test fixtures
+        if: matrix.probe == 'tvm'
+        working-directory: research/vanta-tron
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location --retry 2 --max-time 120 \
+            https://github.com/tronprotocol/solidity/releases/download/tv_0.8.26/solc-static-linux \
+            -o "$RUNNER_TEMP/tron-solc"
+          echo "98a0df6518346d07f13ec151f64bed48f4df9dd01fbfd81018f9485a374f8edd  $RUNNER_TEMP/tron-solc" | sha256sum -c -
+          chmod 700 "$RUNNER_TEMP/tron-solc"
+          npm ci --ignore-scripts --no-audit --no-fund
+          node staged/check-source-pins.mjs
+          node build-vm-fixtures.mjs "$RUNNER_TEMP/tron-solc" "$RUNNER_TEMP/vanta-tron-results/constructed-tvm.json"
+      - name: Check actual TVM execution, receipt state and per-transaction deadlines
+        if: matrix.probe == 'tvm'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/vm-classes"
+          "$JAVA_HOME_8_X64/bin/javac" -proc:none -cp "$RUNNER_TEMP/FullNode.jar" \
+            -d "$RUNNER_TEMP/vm-classes" "$GITHUB_WORKSPACE/research/vanta-tron/TronVmProbe.java"
+          cd "$RUNNER_TEMP"
+          "$JAVA_HOME_8_X64/bin/java" -Xmx2g -cp "$RUNNER_TEMP/vm-classes:$RUNNER_TEMP/FullNode.jar" \
+            TronVmProbe "$RUNNER_TEMP/vanta-tron-results/constructed-tvm.json" "$RUNNER_TEMP/vanta-tron-results/tvm-results.json"
+      - name: Build pinned upstream candidate without overriding TVM classes
+        if: matrix.probe == 'optimized-arithmetic'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/vanta-tron/prepare-optimized-bn128.mjs "$RUNNER_TEMP/FullNode.jar" \
+            "$JAVA_HOME_8_X64/bin/javac" "$RUNNER_TEMP/optimized-bn128"
+      - name: Compare arithmetic correctness, timing and timeout semantics
+        if: matrix.probe == 'optimized-arithmetic'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP"
+          "$JAVA_HOME_8_X64/bin/java" -Xmx2g -cp "$RUNNER_TEMP/optimized-bn128/classes:$RUNNER_TEMP/FullNode.jar" \
+            org.tron.core.vm.OptimizedBn128Probe "$RUNNER_TEMP/optimized-bn128/source/actuator/src/test/resources/bn128" \
+            "$RUNNER_TEMP/vanta-tron-results/optimized-arithmetic-results.json"
+          cp "$RUNNER_TEMP/optimized-bn128/build.json" "$RUNNER_TEMP/vanta-tron-results/optimized-build.json"
+      - name: Preserve measurements and reproducible inputs
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: vanta-tron-${{ matrix.probe }}
+          path: ${{ runner.temp }}/vanta-tron-results/*.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: State evidence boundary
+        run: |
+          echo 'A successful job means correctness assertions and measurements completed. Inspect strict timeout counts separately.'
+          echo 'Constructed vectors are not genuine browser proofs. Optimized arithmetic is not an adopted TVM implementation.'
