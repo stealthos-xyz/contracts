@@ -1,0 +1,2653 @@
+{
+  "scope": "Direct arithmetic only. Not optimized TVM execution or network qualification.",
+  "candidate": "yanghang8612/java-tron@1b7ab7983fc5d79e884237a6a4d4a212c7b0ccec",
+  "knownAnswerAndDifferentialCases": 93,
+  "upstreamKnownAnswerCases": 49,
+  "wrongSubgroupCases": 2,
+  "sameProcessAlternatingOrder": true,
+  "warmupsPerCasePerImplementation": 20,
+  "samplesPerBudgetPerImplementation": 30,
+  "optimizedTvmCompatible": false,
+  "expiredPairingDeadline": {
+    "released": "OutOfTimeException",
+    "candidate": "false with empty return bytes",
+    "compatible": false,
+    "consequence": "No drop-in VM replacement is attempted. Timeout semantics require review."
+  },
+  "benchmarks": [
+    {
+      "name": "bn256Add.json",
+      "budgetMs": 5000,
+      "released": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 0.048625,
+        "p95CompletionOrTimeoutMs": 0.078779,
+        "maxCompletionOrTimeoutMs": 0.116777
+      },
+      "candidate": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 0.042934,
+        "p95CompletionOrTimeoutMs": 0.060714,
+        "maxCompletionOrTimeoutMs": 0.062764
+      },
+      "releasedRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 0.078779
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.116777
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.056806
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.075651
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.060182
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.046801
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.049091
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.048471
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.045472
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.047796
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.044922
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.026473
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.025044
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.071987
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.049614
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.048154
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.04687
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.053167
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.047949
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.048982
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.051969
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.047021
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.047398
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.068145
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.048625
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.049101
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.049417
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.049657
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.042166
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.047263
+        }
+      ],
+      "candidateRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 0.062764
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.058952
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.060323
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.060714
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.044808
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.056116
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.042066
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.040454
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.042934
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.037167
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.035527
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.02151
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.02172
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.02252
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.045248
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.041177
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.037542
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.046591
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.04398
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.044022
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.041617
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.042723
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.043747
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.039278
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.045208
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.040942
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.044312
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.042122
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.043701
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.044175
+        }
+      ]
+    },
+    {
+      "name": "bn256Add.json",
+      "budgetMs": 80,
+      "released": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 0.023585,
+        "p95CompletionOrTimeoutMs": 0.055865,
+        "maxCompletionOrTimeoutMs": 0.354016
+      },
+      "candidate": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 0.019488,
+        "p95CompletionOrTimeoutMs": 0.057458,
+        "maxCompletionOrTimeoutMs": 0.081568
+      },
+      "releasedRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 0.354016
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.055865
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.044684
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.040701
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.030648
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.023585
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.023035
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.023742
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.023454
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.023705
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.04509
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.024282
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.023528
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.023248
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.023895
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.023143
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.023798
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.02303
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.022723
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.022848
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.022632
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.022705
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.023206
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.022968
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.024659
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.022654
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.022962
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.046802
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.037427
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.03779
+        }
+      ],
+      "candidateRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 0.081568
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.057458
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.0494
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.031803
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.020427
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.018857
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.018923
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.020907
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.019408
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.018943
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.039566
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.020526
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.019488
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.019169
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.019494
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.02
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.025156
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.018664
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.018785
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.018574
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.019193
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.018758
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.018637
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.01855
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.037082
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.018926
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.01929
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.021227
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.047691
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.029981
+        }
+      ]
+    },
+    {
+      "name": "bn256ScalarMul.json",
+      "budgetMs": 5000,
+      "released": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 0.420276,
+        "p95CompletionOrTimeoutMs": 0.450316,
+        "maxCompletionOrTimeoutMs": 0.452672
+      },
+      "candidate": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 0.099338,
+        "p95CompletionOrTimeoutMs": 0.131153,
+        "maxCompletionOrTimeoutMs": 0.136013
+      },
+      "releasedRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 0.406558
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.433762
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.424193
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.446378
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.430017
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.429171
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.412694
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.452672
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.450316
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.435038
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.420276
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.413569
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.405525
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.400507
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.410026
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.412694
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.425703
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.399686
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.414475
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.399728
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.414723
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.426938
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.446105
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.402585
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.415621
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.42104
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.443591
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.438754
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.401455
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.425751
+        }
+      ],
+      "candidateRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 0.097204
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.092797
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.096975
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.095104
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.100722
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.094933
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.099511
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.092595
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.101313
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.113973
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.125741
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.116239
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.131089
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.09447
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.097357
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.106274
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.102339
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.09417
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.098085
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.095083
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.09875
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.093702
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.105051
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.094549
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.131153
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.104526
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.099338
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.110883
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.136013
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.101143
+        }
+      ]
+    },
+    {
+      "name": "bn256ScalarMul.json",
+      "budgetMs": 80,
+      "released": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 0.811521,
+        "p95CompletionOrTimeoutMs": 1.329921,
+        "maxCompletionOrTimeoutMs": 1.355661
+      },
+      "candidate": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 0.161952,
+        "p95CompletionOrTimeoutMs": 0.341277,
+        "maxCompletionOrTimeoutMs": 0.346879
+      },
+      "releasedRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 0.69542
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.422386
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.449821
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.41514
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.421401
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.792101
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.79292
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.808988
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.784973
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.80326
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.774398
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.781106
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.778651
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.818853
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.772445
+        },
+        {
+          "status": "success",
+          "elapsedMs": 1.226167
+        },
+        {
+          "status": "success",
+          "elapsedMs": 1.27076
+        },
+        {
+          "status": "success",
+          "elapsedMs": 1.262153
+        },
+        {
+          "status": "success",
+          "elapsedMs": 1.22718
+        },
+        {
+          "status": "success",
+          "elapsedMs": 1.245137
+        },
+        {
+          "status": "success",
+          "elapsedMs": 1.24054
+        },
+        {
+          "status": "success",
+          "elapsedMs": 1.329921
+        },
+        {
+          "status": "success",
+          "elapsedMs": 1.281189
+        },
+        {
+          "status": "success",
+          "elapsedMs": 1.226848
+        },
+        {
+          "status": "success",
+          "elapsedMs": 1.355661
+        },
+        {
+          "status": "success",
+          "elapsedMs": 1.247209
+        },
+        {
+          "status": "success",
+          "elapsedMs": 1.125148
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.832382
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.811521
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.870178
+        }
+      ],
+      "candidateRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 0.116037
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.096942
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.101668
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.094854
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.09808
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.146335
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.160211
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.150754
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.161076
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.153746
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.16513
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.150452
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.175722
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.152221
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.152428
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.187766
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.293277
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.300475
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.300329
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.301107
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.341277
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.269259
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.295528
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.270639
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.346879
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.274038
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.208122
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.161952
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.193269
+        },
+        {
+          "status": "success",
+          "elapsedMs": 0.150096
+        }
+      ]
+    },
+    {
+      "name": "bn256Pairing.json",
+      "budgetMs": 5000,
+      "released": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 44.013005,
+        "p95CompletionOrTimeoutMs": 63.638598,
+        "maxCompletionOrTimeoutMs": 63.838622
+      },
+      "candidate": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 4.510041,
+        "p95CompletionOrTimeoutMs": 7.985062,
+        "maxCompletionOrTimeoutMs": 8.063096
+      },
+      "releasedRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 63.638598
+        },
+        {
+          "status": "success",
+          "elapsedMs": 63.838622
+        },
+        {
+          "status": "success",
+          "elapsedMs": 48.505557
+        },
+        {
+          "status": "success",
+          "elapsedMs": 44.363114
+        },
+        {
+          "status": "success",
+          "elapsedMs": 57.917205
+        },
+        {
+          "status": "success",
+          "elapsedMs": 60.530361
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.486848
+        },
+        {
+          "status": "success",
+          "elapsedMs": 61.028986
+        },
+        {
+          "status": "success",
+          "elapsedMs": 59.032853
+        },
+        {
+          "status": "success",
+          "elapsedMs": 58.596229
+        },
+        {
+          "status": "success",
+          "elapsedMs": 44.621083
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.361534
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.464069
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.405288
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.634301
+        },
+        {
+          "status": "success",
+          "elapsedMs": 44.013005
+        },
+        {
+          "status": "success",
+          "elapsedMs": 44.583745
+        },
+        {
+          "status": "success",
+          "elapsedMs": 46.489336
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.506993
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.531743
+        },
+        {
+          "status": "success",
+          "elapsedMs": 45.279637
+        },
+        {
+          "status": "success",
+          "elapsedMs": 44.52966
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.700378
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.41805
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.513421
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.379713
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.377346
+        },
+        {
+          "status": "success",
+          "elapsedMs": 44.576821
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.366831
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.572825
+        }
+      ],
+      "candidateRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 7.549966
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.519553
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.668718
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.701861
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.140017
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.469594
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.67911
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.18612
+        },
+        {
+          "status": "success",
+          "elapsedMs": 8.063096
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.985062
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.468498
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.390731
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.573092
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.48316
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.501706
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.398665
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.510041
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.492563
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.606875
+        },
+        {
+          "status": "success",
+          "elapsedMs": 5.860317
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.152653
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.437285
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.469259
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.367232
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.429047
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.38695
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.483136
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.373535
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.569278
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.455198
+        }
+      ]
+    },
+    {
+      "name": "bn256Pairing.json",
+      "budgetMs": 80,
+      "released": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 43.501187,
+        "p95CompletionOrTimeoutMs": 46.763982,
+        "maxCompletionOrTimeoutMs": 50.189526
+      },
+      "candidate": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 4.489096,
+        "p95CompletionOrTimeoutMs": 7.66847,
+        "maxCompletionOrTimeoutMs": 8.137187
+      },
+      "releasedRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 44.151958
+        },
+        {
+          "status": "success",
+          "elapsedMs": 46.763982
+        },
+        {
+          "status": "success",
+          "elapsedMs": 44.598185
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.538719
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.408612
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.374806
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.652282
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.28377
+        },
+        {
+          "status": "success",
+          "elapsedMs": 44.014673
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.677894
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.253683
+        },
+        {
+          "status": "success",
+          "elapsedMs": 44.506165
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.483402
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.596294
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.398822
+        },
+        {
+          "status": "success",
+          "elapsedMs": 44.388017
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.470273
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.388913
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.350517
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.475926
+        },
+        {
+          "status": "success",
+          "elapsedMs": 44.350913
+        },
+        {
+          "status": "success",
+          "elapsedMs": 50.189526
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.321954
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.35438
+        },
+        {
+          "status": "success",
+          "elapsedMs": 44.226585
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.314747
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.501187
+        },
+        {
+          "status": "success",
+          "elapsedMs": 44.647011
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.666492
+        },
+        {
+          "status": "success",
+          "elapsedMs": 43.474753
+        }
+      ],
+      "candidateRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 5.682679
+        },
+        {
+          "status": "success",
+          "elapsedMs": 8.137187
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.730239
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.399693
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.625432
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.368652
+        },
+        {
+          "status": "success",
+          "elapsedMs": 5.484369
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.725918
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.546755
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.379236
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.481104
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.358533
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.489096
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.340375
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.490376
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.401519
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.462658
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.395865
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.504406
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.497149
+        },
+        {
+          "status": "success",
+          "elapsedMs": 5.832588
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.66847
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.690905
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.367593
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.550103
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.383295
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.479862
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.417199
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.915853
+        },
+        {
+          "status": "success",
+          "elapsedMs": 4.440273
+        }
+      ]
+    },
+    {
+      "name": "pairing-four-pairs",
+      "budgetMs": 5000,
+      "released": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 77.640835,
+        "p95CompletionOrTimeoutMs": 78.945102,
+        "maxCompletionOrTimeoutMs": 78.977092
+      },
+      "candidate": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 6.606749,
+        "p95CompletionOrTimeoutMs": 8.120946,
+        "maxCompletionOrTimeoutMs": 9.356203
+      },
+      "releasedRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 77.37934
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.937442
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.537314
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.079042
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.907381
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.64259
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.577702
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.640835
+        },
+        {
+          "status": "success",
+          "elapsedMs": 78.591234
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.58121
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.73626
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.532106
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.625979
+        },
+        {
+          "status": "success",
+          "elapsedMs": 78.945102
+        },
+        {
+          "status": "success",
+          "elapsedMs": 78.190103
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.784629
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.189207
+        },
+        {
+          "status": "success",
+          "elapsedMs": 78.092412
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.79154
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.53217
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.385407
+        },
+        {
+          "status": "success",
+          "elapsedMs": 78.977092
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.507568
+        },
+        {
+          "status": "success",
+          "elapsedMs": 76.602321
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.631641
+        },
+        {
+          "status": "success",
+          "elapsedMs": 78.17624
+        },
+        {
+          "status": "success",
+          "elapsedMs": 78.001621
+        },
+        {
+          "status": "success",
+          "elapsedMs": 78.390168
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.42262
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.773741
+        }
+      ],
+      "candidateRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 6.587204
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.671282
+        },
+        {
+          "status": "success",
+          "elapsedMs": 8.120946
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.672106
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.569065
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.505474
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.587697
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.518463
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.565199
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.514115
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.477693
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.606749
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.02137
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.674173
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.513064
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.334683
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.588414
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.535329
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.538832
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.577212
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.662961
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.559425
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.538817
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.383629
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.593808
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.760582
+        },
+        {
+          "status": "success",
+          "elapsedMs": 9.356203
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.981554
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.584143
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.611747
+        }
+      ]
+    },
+    {
+      "name": "pairing-four-pairs",
+      "budgetMs": 80,
+      "released": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 77.617937,
+        "p95CompletionOrTimeoutMs": 79.111242,
+        "maxCompletionOrTimeoutMs": 79.92108
+      },
+      "candidate": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 6.553182,
+        "p95CompletionOrTimeoutMs": 7.651405,
+        "maxCompletionOrTimeoutMs": 7.753663
+      },
+      "releasedRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 79.111242
+        },
+        {
+          "status": "success",
+          "elapsedMs": 78.352734
+        },
+        {
+          "status": "success",
+          "elapsedMs": 79.92108
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.746816
+        },
+        {
+          "status": "success",
+          "elapsedMs": 78.716137
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.197854
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.488644
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.821619
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.430268
+        },
+        {
+          "status": "success",
+          "elapsedMs": 76.629039
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.7142
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.781606
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.768554
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.82322
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.588412
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.77326
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.617937
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.335861
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.725621
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.382
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.584648
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.487046
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.423054
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.786856
+        },
+        {
+          "status": "success",
+          "elapsedMs": 78.764607
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.972648
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.474612
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.535517
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.257973
+        },
+        {
+          "status": "success",
+          "elapsedMs": 77.548339
+        }
+      ],
+      "candidateRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 6.633891
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.499979
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.538382
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.883695
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.671632
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.497327
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.61829
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.651405
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.753663
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.651229
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.632954
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.496457
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.547614
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.573212
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.553796
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.532938
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.553182
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.507258
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.537629
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.530151
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.677542
+        },
+        {
+          "status": "success",
+          "elapsedMs": 7.396299
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.553051
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.470952
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.537961
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.523962
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.638427
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.568506
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.570643
+        },
+        {
+          "status": "success",
+          "elapsedMs": 6.549066
+        }
+      ]
+    },
+    {
+      "name": "pairing-eight-pairs",
+      "budgetMs": 5000,
+      "released": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 145.047836,
+        "p95CompletionOrTimeoutMs": 153.479538,
+        "maxCompletionOrTimeoutMs": 172.564495
+      },
+      "candidate": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 10.909757,
+        "p95CompletionOrTimeoutMs": 17.109905,
+        "maxCompletionOrTimeoutMs": 21.322522
+      },
+      "releasedRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 144.880915
+        },
+        {
+          "status": "success",
+          "elapsedMs": 145.020864
+        },
+        {
+          "status": "success",
+          "elapsedMs": 146.078616
+        },
+        {
+          "status": "success",
+          "elapsedMs": 145.491106
+        },
+        {
+          "status": "success",
+          "elapsedMs": 144.946152
+        },
+        {
+          "status": "success",
+          "elapsedMs": 150.175861
+        },
+        {
+          "status": "success",
+          "elapsedMs": 144.779862
+        },
+        {
+          "status": "success",
+          "elapsedMs": 145.953111
+        },
+        {
+          "status": "success",
+          "elapsedMs": 153.479538
+        },
+        {
+          "status": "success",
+          "elapsedMs": 144.81012
+        },
+        {
+          "status": "success",
+          "elapsedMs": 144.532475
+        },
+        {
+          "status": "success",
+          "elapsedMs": 145.028022
+        },
+        {
+          "status": "success",
+          "elapsedMs": 146.561045
+        },
+        {
+          "status": "success",
+          "elapsedMs": 145.563562
+        },
+        {
+          "status": "success",
+          "elapsedMs": 145.30921
+        },
+        {
+          "status": "success",
+          "elapsedMs": 144.697264
+        },
+        {
+          "status": "success",
+          "elapsedMs": 145.672094
+        },
+        {
+          "status": "success",
+          "elapsedMs": 144.721183
+        },
+        {
+          "status": "success",
+          "elapsedMs": 144.902127
+        },
+        {
+          "status": "success",
+          "elapsedMs": 147.921871
+        },
+        {
+          "status": "success",
+          "elapsedMs": 145.841429
+        },
+        {
+          "status": "success",
+          "elapsedMs": 152.417587
+        },
+        {
+          "status": "success",
+          "elapsedMs": 144.23303
+        },
+        {
+          "status": "success",
+          "elapsedMs": 144.271894
+        },
+        {
+          "status": "success",
+          "elapsedMs": 172.564495
+        },
+        {
+          "status": "success",
+          "elapsedMs": 145.047836
+        },
+        {
+          "status": "success",
+          "elapsedMs": 145.506939
+        },
+        {
+          "status": "success",
+          "elapsedMs": 144.829678
+        },
+        {
+          "status": "success",
+          "elapsedMs": 146.03429
+        },
+        {
+          "status": "success",
+          "elapsedMs": 144.330595
+        }
+      ],
+      "candidateRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 10.824404
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.755905
+        },
+        {
+          "status": "success",
+          "elapsedMs": 11.622057
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.863957
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.869405
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.767364
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.837396
+        },
+        {
+          "status": "success",
+          "elapsedMs": 11.812279
+        },
+        {
+          "status": "success",
+          "elapsedMs": 11.019393
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.957815
+        },
+        {
+          "status": "success",
+          "elapsedMs": 11.728322
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.84831
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.91132
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.933987
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.867542
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.819542
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.940977
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.860137
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.871688
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.82351
+        },
+        {
+          "status": "success",
+          "elapsedMs": 13.131098
+        },
+        {
+          "status": "success",
+          "elapsedMs": 14.611202
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.930667
+        },
+        {
+          "status": "success",
+          "elapsedMs": 11.778613
+        },
+        {
+          "status": "success",
+          "elapsedMs": 21.322522
+        },
+        {
+          "status": "success",
+          "elapsedMs": 17.109905
+        },
+        {
+          "status": "success",
+          "elapsedMs": 11.509565
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.909757
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.787332
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.77776
+        }
+      ]
+    },
+    {
+      "name": "pairing-eight-pairs",
+      "budgetMs": 80,
+      "released": {
+        "samples": 30,
+        "timeouts": 30,
+        "p50CompletionOrTimeoutMs": 87.619538,
+        "p95CompletionOrTimeoutMs": 88.479397,
+        "maxCompletionOrTimeoutMs": 89.404523
+      },
+      "candidate": {
+        "samples": 30,
+        "timeouts": 0,
+        "p50CompletionOrTimeoutMs": 10.830181,
+        "p95CompletionOrTimeoutMs": 11.884412,
+        "maxCompletionOrTimeoutMs": 12.089101
+      },
+      "releasedRaw": [
+        {
+          "status": "timeout",
+          "elapsedMs": 88.027805
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.262873
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.619538
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 88.0721
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.653611
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.514193
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.149713
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 88.479397
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.372201
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.78306
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.322829
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 88.347682
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 89.404523
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.643787
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 80.994773
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 88.347549
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.370672
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 88.003051
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.80433
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.04395
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.260061
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.430511
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 88.262349
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.318283
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.728469
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.31104
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 88.414912
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.465806
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 87.643106
+        },
+        {
+          "status": "timeout",
+          "elapsedMs": 86.40358
+        }
+      ],
+      "candidateRaw": [
+        {
+          "status": "success",
+          "elapsedMs": 11.884412
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.819305
+        },
+        {
+          "status": "success",
+          "elapsedMs": 12.089101
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.780282
+        },
+        {
+          "status": "success",
+          "elapsedMs": 11.744857
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.753499
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.800532
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.795761
+        },
+        {
+          "status": "success",
+          "elapsedMs": 11.639737
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.831899
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.803942
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.748295
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.868405
+        },
+        {
+          "status": "success",
+          "elapsedMs": 11.747824
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.774387
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.77285
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.868193
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.860482
+        },
+        {
+          "status": "success",
+          "elapsedMs": 11.024556
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.949171
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.867628
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.740337
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.849365
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.7357
+        },
+        {
+          "status": "success",
+          "elapsedMs": 11.588425
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.783975
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.773842
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.830181
+        },
+        {
+          "status": "success",
+          "elapsedMs": 10.817935
+        },
+        {
+          "status": "success",
+          "elapsedMs": 11.734748
+        }
+      ]
+    }
+  ],
+  "evidence": {
+    "repository": "stealthos-xyz/contracts",
+    "runId": 46047977427,
+    "jobId": 140671917295,
+    "sourceRevision": "1601a5fd7ec51e06211bcfef7bfe6b2336712036",
+    "originalArtifactResultSha256": "3a50052d4baedbd42a82a8ca2dd59803957b06278b0ec5a5c1995befb7535335",
+    "omitted": null
+  },
+  "runner": {
+    "platform": "Linux-7.0.0-1020-azure-x86_64-with-glibc2.39",
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "logicalCpus": 4,
+    "sourceCommit": "1601a5fd7ec51e06211bcfef7bfe6b2336712036"
+  }
+}

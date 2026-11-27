@@ -4,6 +4,10 @@ All work in this directory belongs to the `vanta-tron` branch. The original
 contracts in `contracts/src` remain unchanged and are checked against their
 source manifest. This experiment moves no funds and grants no pool authority.
 
+The completed [phase 3 results](PHASE_3_RESULTS.md) include raw CI evidence.
+All 168 genuine native correctness outcomes passed, but the current released
+runtime and coarse staging design did not qualify the 80 ms timing screen.
+
 ## What runs
 
 1. **Actual TVM execution.** The pinned official TRON Solidity 0.8.26 compiler
@@ -55,7 +59,11 @@ hashed JSON files. The importer rejects mixed source revisions and domains.
 Current native producers use the existing local qualification domain with fresh
 disposable keys; this does not activate a TRON proof family or reuse deployed
 keys. The staged adapter has a separate new research statement/context, so those
-native proofs test arithmetic rather than staged receipt finalization.
+native proofs test arithmetic rather than staged receipt finalization. The
+native statement is constrained by the existing circuit's canonical Poseidon
+computation; changing only the proof context cannot satisfy the adapter's
+unrelated research Keccak statement. Integrate the existing canonical statement
+and context into the adapter before qualifying genuine receipt authorization.
 
 For the direct upstream comparison:
 
