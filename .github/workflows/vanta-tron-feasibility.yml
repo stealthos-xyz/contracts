@@ -1,0 +1,65 @@
+name: Vanta TRON isolated feasibility
+on:
+  push:
+    branches: [vanta-tron]
+    paths:
+      - 'research/vanta-tron/PrecompileProbe.java'
+      - 'research/vanta-tron/compile-probe.mjs'
+      - '.github/workflows/vanta-tron-feasibility.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vanta-tron-research
+  cancel-in-progress: true
+
+jobs:
+  compile-only:
+    if: github.ref == 'refs/heads/vanta-tron'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - name: Fetch hash-pinned official TRON compiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location --retry 2 --max-time 120 \
+            https://github.com/tronprotocol/solidity/releases/download/tv_0.8.26/solc-static-linux \
+            -o "$RUNNER_TEMP/tron-solc"
+          echo "98a0df6518346d07f13ec151f64bed48f4df9dd01fbfd81018f9485a374f8edd  $RUNNER_TEMP/tron-solc" | sha256sum -c -
+          chmod 700 "$RUNNER_TEMP/tron-solc"
+      - name: Compile exact source-pinned research verifiers and fee verifier
+        shell: bash
+        run: node research/vanta-tron/compile-probe.mjs "$RUNNER_TEMP/tron-solc"
+  precompile-only:
+    if: github.ref == 'refs/heads/vanta-tron'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - name: Fetch hash-pinned upstream runtime jar
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location --retry 2 --max-time 180 \
+            https://github.com/tronprotocol/java-tron/releases/download/GreatVoyage-v4.8.2.4/FullNode-x64.jar \
+            -o "$RUNNER_TEMP/FullNode.jar"
+          echo "709423e8d14ccba391daeef7aa78bb5f41a1b69559cc867346beacbd6aae39c9  $RUNNER_TEMP/FullNode.jar" | sha256sum -c -
+      - name: Run JVM precompile probe without starting a node
+        shell: bash
+        run: |
+          set -euo pipefail
+          : "${JAVA_HOME_8_X64:?Runner must have JDK 8}"
+          "$JAVA_HOME_8_X64/bin/java" -version
+          lscpu | grep -E 'Architecture:|Model name:|^CPU\(s\):' || true
+          mkdir -p "$RUNNER_TEMP/probe"
+          "$JAVA_HOME_8_X64/bin/javac" -cp "$RUNNER_TEMP/FullNode.jar" -d "$RUNNER_TEMP/probe" research/vanta-tron/PrecompileProbe.java
+          "$JAVA_HOME_8_X64/bin/java" -Xmx2g -cp "$RUNNER_TEMP/probe:$RUNNER_TEMP/FullNode.jar" PrecompileProbe
+      - name: Scope boundary
+        run: echo 'Research only. No blockchain node, transaction, credentials, deployment, environment, release, or publication.'
